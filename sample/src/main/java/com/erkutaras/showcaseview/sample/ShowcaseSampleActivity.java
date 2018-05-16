@@ -22,7 +22,9 @@ public class ShowcaseSampleActivity extends AppCompatActivity {
         findViewById(R.id.progressBar).setOnClickListener(listener);
         findViewById(R.id.textView).setOnClickListener(listener);
         findViewById(R.id.checkBox).setOnClickListener(listener);
-        findViewById(R.id.spinner).setOnClickListener(listener);
+        findViewById(R.id.progressBar2).setOnClickListener(listener);
+        findViewById(R.id.checkedTextView).setOnClickListener(listener);
+        findViewById(R.id.radioButton).setOnClickListener(listener);
     }
 
     View.OnClickListener listener = v -> {
