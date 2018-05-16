@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="intro_title">#fff</color>
+    <color name="intro_text">#eeeeee</color>
+    <color name="intro_button_background">#666666</color>
+    <color name="intro_button_text">#ffffff</color>
+</resources>
