@@ -17,6 +17,6 @@
         <!-- to display showcaseview, this activity and its' style must be added -->
         <activity
             android:name="com.erkutaras.showcaseview.ShowcaseActivity"
-            android:theme="@style/ShowcaseTransparent"/>
+            android:theme="@style/ShowcaseTransparentTheme"/>
     </application>
 </manifest>
