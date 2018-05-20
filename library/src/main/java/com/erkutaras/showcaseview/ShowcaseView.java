@@ -169,7 +169,7 @@ public class ShowcaseView extends RelativeLayout {
         canvas.drawRect(rectF, paint);
         // focus area
         paint.setColor(colorFocusArea);
-        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_OUT));
+        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
         canvas.drawCircle(cxFocusArea, cyFocusArea, radiusFocusArea, paint);
         // shadow for focus area
         Paint shadowPaint = new Paint();

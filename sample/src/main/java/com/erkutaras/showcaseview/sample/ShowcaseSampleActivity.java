@@ -41,10 +41,3 @@ public class ShowcaseSampleActivity extends AppCompatActivity {
                 .show();
     };
 }
-
-// TODO: erkutaras
-/**
- * API LEVEL     BUG
- * 19            gradient
- * 18            gradient
- */
