@@ -11,7 +11,7 @@ import java.util.List;
 
 public class ShowcaseActivity extends AppCompatActivity {
 
-    protected static final String EXTRAS_TUTORIAL = "EXTRAS_TUTORIAL";
+    protected static final String EXTRAS_SHOWCASES = "EXTRAS_SHOWCASES";
     private int currentIndex = 0;
 
     @Override
@@ -20,9 +20,9 @@ public class ShowcaseActivity extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
         if (ShowcaseUtils.isNull(extras)) {
             throw new NullPointerException("Extras can not be null. To pass the extras, " +
-                    "you need to pass mandatory parameters to TutorialViewManager.");
+                    "you need to pass mandatory parameters to ShowcaseManager.");
         }
-        List<ShowcaseModel> showcaseModels = extras.getParcelableArrayList(EXTRAS_TUTORIAL);
+        List<ShowcaseModel> showcaseModels = extras.getParcelableArrayList(EXTRAS_SHOWCASES);
         if (ShowcaseUtils.isNull(showcaseModels)){
             finish();
             return;

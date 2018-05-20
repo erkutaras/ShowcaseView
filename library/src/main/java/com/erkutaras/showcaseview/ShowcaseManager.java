@@ -44,7 +44,7 @@ public final class ShowcaseManager {
         }
 
         Intent intent = new Intent(context, ShowcaseActivity.class);
-        intent.putParcelableArrayListExtra(ShowcaseActivity.EXTRAS_TUTORIAL, (ArrayList<? extends Parcelable>) builder.showcaseModelList);
+        intent.putParcelableArrayListExtra(ShowcaseActivity.EXTRAS_SHOWCASES, (ArrayList<? extends Parcelable>) builder.showcaseModelList);
         context.startActivity(intent);
         ShowcaseUtils.ShowcaseSP.instance(context).show(key);
     }
