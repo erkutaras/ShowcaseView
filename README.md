@@ -1,4 +1,6 @@
 # ShowcaseView
+[![](https://jitpack.io/v/erkutaras/ShowcaseView.svg)](https://jitpack.io/#erkutaras/ShowcaseView)
+
 ShowcaseView library for Android
 
 
