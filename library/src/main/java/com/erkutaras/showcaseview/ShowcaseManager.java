@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Rect;
+import android.os.Build;
 import android.os.Parcelable;
 import android.util.Log;
 import android.view.View;
@@ -189,9 +190,9 @@ public final class ShowcaseManager {
         private ShowcaseModel createShowcaseModel() {
             Rect viewPositionRect = new Rect();
             view.getGlobalVisibleRect(viewPositionRect);
-            boolean isFullScreen = (((Activity) context).getWindow().getAttributes().flags & WindowManager.LayoutParams.FLAG_FULLSCREEN) == WindowManager.LayoutParams.FLAG_FULLSCREEN;
-            float circleCenterX = viewPositionRect.left + (view.getWidth() / 2);
-            float circleCenterY = viewPositionRect.top + ((view.getHeight() - view.getPaddingBottom() - view.getPaddingTop()) / 2) - (isFullScreen ? ShowcaseUtils.convertDpToPx(STATUS_BAR_HEIGHT) : 0);
+            boolean needsLowerYPosition = needsLowerYPosition();
+            float circleCenterX = getCircleCenterX(viewPositionRect);
+            float circleCenterY = getCircleCenterY(viewPositionRect, needsLowerYPosition);
             float circleCenterRadius = calculateRadius();
 
             return new ShowcaseModel.Builder()
@@ -212,6 +213,21 @@ public final class ShowcaseManager {
                     .developMode(isDevelopMode)
                     .build();
 
+        }
+
+        private int getCircleCenterX(Rect viewPositionRect) {
+            return viewPositionRect.left + (view.getWidth() / 2);
+        }
+
+        private float getCircleCenterY(Rect viewPositionRect, boolean needsLowerYPosition) {
+            return viewPositionRect.top
+                    + ((view.getHeight() - view.getPaddingBottom() - view.getPaddingTop()) / 2)
+                    - (needsLowerYPosition ? ShowcaseUtils.convertDpToPx(STATUS_BAR_HEIGHT) : 0);
+        }
+
+        private boolean needsLowerYPosition() {
+            return Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT
+                    || (((Activity) context).getWindow().getAttributes().flags & WindowManager.LayoutParams.FLAG_FULLSCREEN) == WindowManager.LayoutParams.FLAG_FULLSCREEN;
         }
 
         /**

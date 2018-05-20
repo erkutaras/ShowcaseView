@@ -46,6 +46,5 @@ public class ShowcaseSampleActivity extends AppCompatActivity {
 /**
  * API LEVEL     BUG
  * 19            gradient
- * 18            gradient - y position
- * 17            y position
+ * 18            gradient
  */
