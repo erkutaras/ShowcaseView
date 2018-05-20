@@ -126,7 +126,7 @@ public class ShowcaseView extends RelativeLayout {
             button.setTextColor(colorButtonText);
         }
         if (ShowcaseUtils.isNotZero(colorButtonBackground)) {
-            button.setBackgroundColor(colorButtonText);
+            button.setBackgroundColor(colorButtonBackground);
         }
         if (ShowcaseUtils.isNonNull(onClickListener)) {
             button.setOnClickListener(onClickListener);

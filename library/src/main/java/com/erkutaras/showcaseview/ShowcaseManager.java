@@ -210,7 +210,6 @@ public final class ShowcaseManager {
                     .cxFocusArea(circleCenterX)
                     .cyFocusArea(circleCenterY)
                     .radiusFocusArea(circleCenterRadius)
-                    .developMode(isDevelopMode)
                     .build();
 
         }

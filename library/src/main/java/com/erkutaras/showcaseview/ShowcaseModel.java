@@ -24,7 +24,6 @@ public class ShowcaseModel implements Parcelable {
     private float cxFocusArea;
     private float cyFocusArea;
     private float radiusFocusArea;
-    private boolean isDevelopMode;
 
     private ShowcaseModel() {
     }
@@ -44,7 +43,6 @@ public class ShowcaseModel implements Parcelable {
         cxFocusArea = in.readFloat();
         cyFocusArea = in.readFloat();
         radiusFocusArea = in.readFloat();
-        isDevelopMode = in.readByte() != 1;
     }
 
     public static final Creator<ShowcaseModel> CREATOR = new Creator<ShowcaseModel>() {
@@ -113,10 +111,6 @@ public class ShowcaseModel implements Parcelable {
 
     public float getRadiusFocusArea() {
         return radiusFocusArea;
-    }
-
-    public boolean isDevelopMode() {
-        return isDevelopMode;
     }
 
     @Override
@@ -232,11 +226,6 @@ public class ShowcaseModel implements Parcelable {
             return this;
         }
 
-        public Builder developMode(boolean isDevelopMode) {
-            this.isDevelopMode = isDevelopMode;
-            return this;
-        }
-
         public ShowcaseModel build() {
             ShowcaseModel showcaseModel = new ShowcaseModel();
             showcaseModel.colorButtonText = this.colorButtonText;
@@ -253,7 +242,6 @@ public class ShowcaseModel implements Parcelable {
             showcaseModel.buttonText = this.buttonText;
             showcaseModel.colorFocusArea = this.colorFocusArea;
             showcaseModel.radiusFocusArea = this.radiusFocusArea;
-            showcaseModel.isDevelopMode = this.isDevelopMode;
             return showcaseModel;
         }
     }
