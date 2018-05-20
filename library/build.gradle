@@ -1,14 +1,16 @@
 apply plugin: 'com.android.library'
 apply plugin: 'com.github.dcendents.android-maven'
 
+group='com.erkutaras.showcaseview'
+
 android {
     compileSdkVersion 27
 
     defaultConfig {
         minSdkVersion 17
         targetSdkVersion 27
-        versionCode 1
-        versionName "1.0.0"
+        versionCode 2
+        versionName "1.0.1"
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
