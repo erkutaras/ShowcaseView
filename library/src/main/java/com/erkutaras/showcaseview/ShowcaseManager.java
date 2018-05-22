@@ -8,10 +8,10 @@ import android.os.Build;
 import android.os.Parcelable;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
 import android.view.WindowManager;
 
 import java.util.ArrayList;
-
 import java.util.List;
 
 /**
@@ -45,6 +45,7 @@ public final class ShowcaseManager {
 
         Intent intent = new Intent(context, ShowcaseActivity.class);
         intent.putParcelableArrayListExtra(ShowcaseActivity.EXTRAS_SHOWCASES, (ArrayList<? extends Parcelable>) builder.showcaseModelList);
+        intent.putExtra(ShowcaseActivity.EXTRAS_SYSTEM_UI_VISIBILITY, getSystemUiVisibility());
         context.startActivity(intent);
         ShowcaseUtils.ShowcaseSP.instance(context).show(key);
     }
@@ -76,6 +77,16 @@ public final class ShowcaseManager {
             return true;
         }
         return false;
+    }
+
+    private boolean getSystemUiVisibility() {
+        Window window = ((Activity) context).getWindow();
+        View decorView = window.getDecorView();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+            return decorView.getSystemUiVisibility() == View.VISIBLE;
+        }
+        return (window.getAttributes().flags & WindowManager.LayoutParams.FLAG_FULLSCREEN)
+                == WindowManager.LayoutParams.FLAG_FULLSCREEN;
     }
 
     public static final class Builder {
@@ -190,9 +201,8 @@ public final class ShowcaseManager {
         private ShowcaseModel createShowcaseModel() {
             Rect viewPositionRect = new Rect();
             view.getGlobalVisibleRect(viewPositionRect);
-            boolean needsLowerYPosition = needsLowerYPosition();
             float circleCenterX = getCircleCenterX(viewPositionRect);
-            float circleCenterY = getCircleCenterY(viewPositionRect, needsLowerYPosition);
+            float circleCenterY = getCircleCenterY(viewPositionRect);
             float circleCenterRadius = calculateRadius();
 
             return new ShowcaseModel.Builder()
@@ -218,15 +228,9 @@ public final class ShowcaseManager {
             return viewPositionRect.left + (view.getWidth() / 2);
         }
 
-        private float getCircleCenterY(Rect viewPositionRect, boolean needsLowerYPosition) {
+        private float getCircleCenterY(Rect viewPositionRect) {
             return viewPositionRect.top
-                    + ((view.getHeight() - view.getPaddingBottom() - view.getPaddingTop()) / 2)
-                    - (needsLowerYPosition ? ShowcaseUtils.convertDpToPx(STATUS_BAR_HEIGHT) : 0);
-        }
-
-        private boolean needsLowerYPosition() {
-            return Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT
-                    || (((Activity) context).getWindow().getAttributes().flags & WindowManager.LayoutParams.FLAG_FULLSCREEN) == WindowManager.LayoutParams.FLAG_FULLSCREEN;
+                    + ((view.getHeight() - view.getPaddingBottom() - view.getPaddingTop()) / 2);
         }
 
         /**

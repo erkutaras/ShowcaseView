@@ -4,6 +4,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.Switch;
 
 import com.erkutaras.showcaseview.ShowcaseManager;
 
@@ -16,12 +17,15 @@ public class ShowcaseSampleActivity extends AppCompatActivity {
 
     View v1;
     View v2;
+    Switch switchStatusBarVisibility;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_showcase_sample);
 
+        switchStatusBarVisibility = findViewById(R.id.switch1);
+        initSwitch();
         findViewById(R.id.progressBar2).setOnClickListener(listener);
         findViewById(R.id.progressBar).setOnClickListener(listener1);
         findViewById(R.id.textView).setOnClickListener(listener2);
@@ -138,4 +142,20 @@ public class ShowcaseSampleActivity extends AppCompatActivity {
                 .build()
                 .show();
     };
+
+    private void setStatusBarVisibility(boolean statusBarVisibility) {
+        View decorView = getWindow().getDecorView();
+        int uiOptions;
+        if (statusBarVisibility) {
+            uiOptions = View.SYSTEM_UI_FLAG_VISIBLE;
+        } else {
+            uiOptions = View.SYSTEM_UI_FLAG_FULLSCREEN;
+        }
+        decorView.setSystemUiVisibility(uiOptions);
+    }
+
+    private void initSwitch() {
+        switchStatusBarVisibility.setChecked(getWindow().getDecorView().getSystemUiVisibility() == View.VISIBLE);
+        switchStatusBarVisibility.setOnCheckedChangeListener((buttonView, isChecked) -> setStatusBarVisibility(isChecked));
+    }
 }
