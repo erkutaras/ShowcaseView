@@ -1,7 +1,9 @@
 package com.erkutaras.showcaseview;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 
 import java.util.List;
 
@@ -12,6 +14,7 @@ import java.util.List;
 public class ShowcaseActivity extends AppCompatActivity {
 
     protected static final String EXTRAS_SHOWCASES = "EXTRAS_SHOWCASES";
+    protected static final String EXTRAS_SYSTEM_UI_VISIBILITY = "EXTRAS_SYSTEM_UI_VISIBILITY";
     private int currentIndex = 0;
 
     @Override
@@ -38,5 +41,28 @@ public class ShowcaseActivity extends AppCompatActivity {
         });
         layout.updateView(showcaseModels.get(currentIndex));
         setContentView(layout);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (!getExtras().getBoolean(EXTRAS_SYSTEM_UI_VISIBILITY, false)) {
+            View decorView = getWindow().getDecorView();
+            int uiOptions = 0;
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                uiOptions = View.SYSTEM_UI_FLAG_FULLSCREEN;
+            }
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+                decorView.setSystemUiVisibility(uiOptions);
+            }
+        }
+    }
+
+    private Bundle getExtras() {
+        if (ShowcaseUtils.isNonNull(getIntent().getExtras())) {
+            return getIntent().getExtras();
+        } else {
+            return new Bundle();
+        }
     }
 }
