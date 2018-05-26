@@ -87,6 +87,7 @@ public class ShowcaseView extends RelativeLayout {
         marginInDp = 20;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.GINGERBREAD)
     public void updateView(ShowcaseModel showcaseModel) {
         descriptionImageRes = showcaseModel.getDescriptionImageRes();
         descriptionTitle = showcaseModel.getDescriptionTitle();
@@ -152,6 +153,7 @@ public class ShowcaseView extends RelativeLayout {
         this.onClickListener = onClickListener;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.HONEYCOMB)
     @Override
     protected void dispatchDraw(Canvas canvas) {
         if (cxFocusArea == 0 || cyFocusArea == 0) {
