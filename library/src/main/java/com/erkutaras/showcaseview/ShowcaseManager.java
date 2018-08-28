@@ -229,7 +229,7 @@ public final class ShowcaseManager {
 
         private float getCircleCenterY(Rect viewPositionRect) {
             return viewPositionRect.top
-                    + ((view.getHeight() - view.getPaddingBottom() - view.getPaddingTop()) / 2);
+                    + (view.getHeight() / 2);
         }
 
         /**
