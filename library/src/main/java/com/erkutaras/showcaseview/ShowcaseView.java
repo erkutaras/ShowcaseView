@@ -28,7 +28,6 @@ public class ShowcaseView extends RelativeLayout {
     public static final int FOCUS_AREA_TOP_MARGIN_IN_DP = 50;
     public static final int FOCUS_AREA_BOTTOM_MARGIN_IN_DP = 20;
 
-    private Bitmap bitmap;
     private View descriptionView;
     private OnClickListener onClickListener;
     // updatable fields for descriptionView
@@ -164,7 +163,6 @@ public class ShowcaseView extends RelativeLayout {
 
         // background
         RectF rectF = new RectF(0, 0, getWidth(), getHeight());
-        bitmap = Bitmap.createBitmap(getWidth(), getHeight(), Bitmap.Config.ARGB_8888);
         Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
         paint.setColor(colorBackground);
         paint.setAlpha(alphaBackground);
@@ -182,8 +180,6 @@ public class ShowcaseView extends RelativeLayout {
         shadowPaint.setShader(new RadialGradient(cxFocusArea, cyFocusArea, radiusFocusArea,
                 colorFocusArea, shadowPaint.getColor(), Shader.TileMode.CLAMP));
         canvas.drawCircle(cxFocusArea, cyFocusArea, radiusFocusArea, shadowPaint);
-        // draw all views and update location of descriptionView
-        canvas.drawBitmap(bitmap, 0, 0, null);
         // descriptionView relocate related to focusArea
         float topMarginFocusArea = ShowcaseUtils.convertDpToPx(FOCUS_AREA_TOP_MARGIN_IN_DP);
         float bottomMarginFocusArea = ShowcaseUtils.convertDpToPx(FOCUS_AREA_BOTTOM_MARGIN_IN_DP);
