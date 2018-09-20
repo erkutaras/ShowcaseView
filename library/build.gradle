@@ -7,8 +7,9 @@ android {
     compileSdkVersion 27
 
     defaultConfig {
-        versionCode 8
-        versionName "1.0.7"
+        targetSdkVersion 10
+        versionCode 9
+        versionName "1.0.8"
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
