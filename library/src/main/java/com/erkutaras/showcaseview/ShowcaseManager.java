@@ -4,12 +4,10 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Rect;
-import android.os.Build;
 import android.os.Parcelable;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
-import android.view.WindowManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -81,11 +79,7 @@ public final class ShowcaseManager {
     private boolean getSystemUiVisibility() {
         Window window = ((Activity) context).getWindow();
         View decorView = window.getDecorView();
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
-            return decorView.getSystemUiVisibility() == View.VISIBLE;
-        }
-        return (window.getAttributes().flags & WindowManager.LayoutParams.FLAG_FULLSCREEN)
-                == WindowManager.LayoutParams.FLAG_FULLSCREEN;
+        return decorView.getSystemUiVisibility() == View.VISIBLE;
     }
 
     public static final class Builder {

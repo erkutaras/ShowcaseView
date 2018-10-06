@@ -1,7 +1,6 @@
 package com.erkutaras.showcaseview;
 
 import android.content.Context;
-import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -11,7 +10,6 @@ import android.graphics.RadialGradient;
 import android.graphics.RectF;
 import android.graphics.Shader;
 import android.os.Build;
-import android.support.annotation.DrawableRes;
 import android.support.annotation.RequiresApi;
 import android.util.AttributeSet;
 import android.view.View;
@@ -30,15 +28,6 @@ public class ShowcaseView extends RelativeLayout {
 
     private View descriptionView;
     private OnClickListener onClickListener;
-    // updatable fields for descriptionView
-    private @DrawableRes int descriptionImageRes;
-    private String descriptionTitle;
-    private String descriptionText;
-    private String buttonText;
-    private int colorDescTitle;
-    private int colorDescText;
-    private int colorButtonText;
-    private int colorButtonBackground;
     // updatable fields for focused area
     private int colorBackground;
     private int alphaBackground;
@@ -66,12 +55,6 @@ public class ShowcaseView extends RelativeLayout {
         init(context);
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-    public ShowcaseView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
-        super(context, attrs, defStyleAttr, defStyleRes);
-        init(context);
-    }
-
     public void init(Context context) {
         descriptionView = inflate(context, R.layout.layout_intro_description, null);
         addView(descriptionView);
@@ -88,14 +71,15 @@ public class ShowcaseView extends RelativeLayout {
 
     @RequiresApi(api = Build.VERSION_CODES.GINGERBREAD)
     public void updateView(ShowcaseModel showcaseModel) {
-        descriptionImageRes = showcaseModel.getDescriptionImageRes();
-        descriptionTitle = showcaseModel.getDescriptionTitle();
-        descriptionText = showcaseModel.getDescriptionText();
-        buttonText = showcaseModel.getButtonText();
-        colorDescTitle = showcaseModel.getColorDescTitle();
-        colorDescText = showcaseModel.getColorDescText();
-        colorButtonText = showcaseModel.getColorButtonText();
-        colorButtonBackground = showcaseModel.getColorButtonBackground();
+        // updatable fields for descriptionView
+        int descriptionImageRes = showcaseModel.getDescriptionImageRes();
+        String descriptionTitle = showcaseModel.getDescriptionTitle();
+        String descriptionText = showcaseModel.getDescriptionText();
+        String buttonText = showcaseModel.getButtonText();
+        int colorDescTitle = showcaseModel.getColorDescTitle();
+        int colorDescText = showcaseModel.getColorDescText();
+        int colorButtonText = showcaseModel.getColorButtonText();
+        int colorButtonBackground = showcaseModel.getColorButtonBackground();
 
         // update descriptionView
         ImageView imageView = descriptionView.findViewById(R.id.imageView_description);

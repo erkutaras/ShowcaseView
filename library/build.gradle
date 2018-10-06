@@ -7,9 +7,10 @@ android {
     compileSdkVersion 27
 
     defaultConfig {
-        targetSdkVersion 10
-        versionCode 9
-        versionName "1.0.8"
+        targetSdkVersion 27
+        minSdkVersion 14
+        versionCode 10
+        versionName "1.0.9"
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
@@ -31,9 +32,5 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-
     implementation 'com.android.support:appcompat-v7:27.1.1'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.2'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 }

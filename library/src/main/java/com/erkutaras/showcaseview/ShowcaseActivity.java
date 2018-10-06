@@ -26,7 +26,7 @@ public class ShowcaseActivity extends AppCompatActivity {
                     "you need to pass mandatory parameters to ShowcaseManager.");
         }
         List<ShowcaseModel> showcaseModels = extras.getParcelableArrayList(EXTRAS_SHOWCASES);
-        if (ShowcaseUtils.isNull(showcaseModels)){
+        if (ShowcaseUtils.isNull(showcaseModels)) {
             finish();
             return;
         }
@@ -52,9 +52,7 @@ public class ShowcaseActivity extends AppCompatActivity {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                 uiOptions = View.SYSTEM_UI_FLAG_FULLSCREEN;
             }
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
-                decorView.setSystemUiVisibility(uiOptions);
-            }
+            decorView.setSystemUiVisibility(uiOptions);
         }
     }
 

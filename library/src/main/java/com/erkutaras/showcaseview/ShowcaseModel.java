@@ -28,7 +28,7 @@ public class ShowcaseModel implements Parcelable {
     private ShowcaseModel() {
     }
 
-    protected ShowcaseModel(Parcel in) {
+    private ShowcaseModel(Parcel in) {
         descriptionImageRes = in.readInt();
         descriptionTitle = in.readString();
         descriptionText = in.readString();
@@ -57,59 +57,59 @@ public class ShowcaseModel implements Parcelable {
         }
     };
 
-    public int getDescriptionImageRes() {
+    int getDescriptionImageRes() {
         return descriptionImageRes;
     }
 
-    public String getDescriptionTitle() {
+    String getDescriptionTitle() {
         return descriptionTitle;
     }
 
-    public String getDescriptionText() {
+    String getDescriptionText() {
         return descriptionText;
     }
 
-    public String getButtonText() {
+    String getButtonText() {
         return buttonText;
     }
 
-    public int getColorDescTitle() {
+    int getColorDescTitle() {
         return colorDescTitle;
     }
 
-    public int getColorDescText() {
+    int getColorDescText() {
         return colorDescText;
     }
 
-    public int getColorButtonText() {
+    int getColorButtonText() {
         return colorButtonText;
     }
 
-    public int getColorButtonBackground() {
+    int getColorButtonBackground() {
         return colorButtonBackground;
     }
 
-    public int getColorBackground() {
+    int getColorBackground() {
         return colorBackground;
     }
 
-    public int getAlphaBackground() {
+    int getAlphaBackground() {
         return alphaBackground;
     }
 
-    public int getColorFocusArea() {
+    int getColorFocusArea() {
         return colorFocusArea;
     }
 
-    public float getCxFocusArea() {
+    float getCxFocusArea() {
         return cxFocusArea;
     }
 
-    public float getCyFocusArea() {
+    float getCyFocusArea() {
         return cyFocusArea;
     }
 
-    public float getRadiusFocusArea() {
+    float getRadiusFocusArea() {
         return radiusFocusArea;
     }
 
@@ -136,7 +136,7 @@ public class ShowcaseModel implements Parcelable {
         dest.writeFloat(radiusFocusArea);
     }
 
-    public static final class Builder {
+    static final class Builder {
         private int descriptionImageRes;
         private String descriptionTitle;
         private String descriptionText;
@@ -151,82 +151,81 @@ public class ShowcaseModel implements Parcelable {
         private float cxFocusArea;
         private float cyFocusArea;
         private float radiusFocusArea;
-        private boolean isDevelopMode;
 
-        public Builder() {
+        Builder() {
         }
 
-        public Builder descriptionImageRes(int descriptionImageRes) {
+        Builder descriptionImageRes(int descriptionImageRes) {
             this.descriptionImageRes = descriptionImageRes;
             return this;
         }
 
-        public Builder descriptionTitle(String descriptionTitle) {
+        Builder descriptionTitle(String descriptionTitle) {
             this.descriptionTitle = descriptionTitle;
             return this;
         }
 
-        public Builder descriptionText(String descriptionText) {
+        Builder descriptionText(String descriptionText) {
             this.descriptionText = descriptionText;
             return this;
         }
 
-        public Builder buttonText(String buttonText) {
+        Builder buttonText(String buttonText) {
             this.buttonText = buttonText;
             return this;
         }
 
-        public Builder colorDescTitle(int colorDescTitle) {
+        Builder colorDescTitle(int colorDescTitle) {
             this.colorDescTitle = colorDescTitle;
             return this;
         }
 
-        public Builder colorDescText(int colorDescText) {
+        Builder colorDescText(int colorDescText) {
             this.colorDescText = colorDescText;
             return this;
         }
 
-        public Builder colorButtonText(int colorButtonText) {
+        Builder colorButtonText(int colorButtonText) {
             this.colorButtonText = colorButtonText;
             return this;
         }
 
-        public Builder colorButtonBackground(int colorButtonBackground) {
+        Builder colorButtonBackground(int colorButtonBackground) {
             this.colorButtonBackground = colorButtonBackground;
             return this;
         }
 
-        public Builder colorBackground(int colorBackground) {
+        Builder colorBackground(int colorBackground) {
             this.colorBackground = colorBackground;
             return this;
         }
 
-        public Builder alphaBackground(int alphaBackground) {
+        Builder alphaBackground(int alphaBackground) {
             this.alphaBackground = alphaBackground;
             return this;
         }
 
-        public Builder colorFocusArea(int colorFocusArea) {
+        Builder colorFocusArea(int colorFocusArea) {
             this.colorFocusArea = colorFocusArea;
             return this;
         }
 
-        public Builder cxFocusArea(float cxFocusArea) {
+        Builder cxFocusArea(float cxFocusArea) {
             this.cxFocusArea = cxFocusArea;
             return this;
         }
 
-        public Builder cyFocusArea(float cyFocusArea) {
+        Builder cyFocusArea(float cyFocusArea) {
             this.cyFocusArea = cyFocusArea;
             return this;
         }
 
-        public Builder radiusFocusArea(float radiusFocusArea) {
+        Builder radiusFocusArea(float radiusFocusArea) {
             this.radiusFocusArea = radiusFocusArea;
             return this;
         }
 
-        public ShowcaseModel build() {
+        ShowcaseModel build() {
             ShowcaseModel showcaseModel = new ShowcaseModel();
             showcaseModel.colorButtonText = this.colorButtonText;
             showcaseModel.colorDescTitle = this.colorDescTitle;
