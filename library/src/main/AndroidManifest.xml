@@ -1,1 +1,11 @@
-<manifest package="com.erkutaras.showcaseview" />
+<manifest package="com.erkutaras.showcaseview"
+          xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <application>
+        <!-- to display showcaseview, this activity and its' style must be added -->
+        <activity
+            android:name="com.erkutaras.showcaseview.ShowcaseActivity"
+            android:theme="@style/ShowcaseTransparentTheme"/>
+    </application>
+
+</manifest>
