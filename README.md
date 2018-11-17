@@ -27,7 +27,7 @@ allprojects {
 **Step 2.** Add the library dependency to your project build.gradle:
 ```
 dependencies {
-    implementation 'com.github.erkutaras:ShowcaseView:1.0.9'
+    implementation 'com.github.erkutaras:ShowcaseView:1.1.0'
 }
 ```
 
