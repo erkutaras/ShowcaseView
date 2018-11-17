@@ -31,15 +31,6 @@ dependencies {
 }
 ```
 
-## AndroidManifest
-
-**Step 3.** Add ShowcaseActivity and its' style to your AndroidManifest.xml:
-```
-<!-- to display showcaseview, this activity and its' style must be added -->
-<activity
-    android:name="com.erkutaras.showcaseview.ShowcaseActivity"
-    android:theme="@style/ShowcaseTransparentTheme"/>
-```
 
 ## Usage
 
