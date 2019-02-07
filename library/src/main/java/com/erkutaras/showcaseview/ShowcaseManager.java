@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.graphics.Rect;
 import android.os.Parcelable;
 import android.util.Log;
+import android.view.Display;
 import android.view.View;
 import android.view.Window;
 
@@ -43,6 +44,7 @@ public final class ShowcaseManager {
         Intent intent = new Intent(context, ShowcaseActivity.class);
         intent.putParcelableArrayListExtra(ShowcaseActivity.EXTRAS_SHOWCASES, (ArrayList<? extends Parcelable>) builder.showcaseModelList);
         intent.putExtra(ShowcaseActivity.EXTRAS_SYSTEM_UI_VISIBILITY, getSystemUiVisibility());
+        intent.addFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS );
         context.startActivity(intent);
         ShowcaseUtils.ShowcaseSP.instance(context).show(key);
     }
@@ -233,7 +235,10 @@ public final class ShowcaseManager {
             float x = view.getWidth() / 2;
             float y = view.getHeight() / 2;
             float radius = (float) Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2));
-            return radius + ShowcaseUtils.convertDpToPx(INNER_MARGIN_OF_FOCUS_AREA_ON_DP);
+            Display display = ((Activity) context).getWindow().getWindowManager().getDefaultDisplay();
+            radius = Math.min(radius, Math.min(display.getWidth(), display.getHeight()) / 4.0f);
+
+            return radius;  // + ShowcaseUtils.convertDpToPx(INNER_MARGIN_OF_FOCUS_AREA_ON_DP);
         }
     }
 }
