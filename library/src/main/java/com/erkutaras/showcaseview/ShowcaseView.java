@@ -140,9 +140,9 @@ public class ShowcaseView extends RelativeLayout {
     @Override
     protected void dispatchDraw(Canvas canvas) {
         if (cxFocusArea == 0 || cyFocusArea == 0) {
-            cxFocusArea = radiusFocusArea + ShowcaseUtils.convertDpToPx(marginInDp);
+            cxFocusArea = radiusFocusArea;  //+ ShowcaseUtils.convertDpToPx(marginInDp);
             cyFocusArea = descriptionView.getY() + descriptionView.getHeight() + radiusFocusArea
-                    + ShowcaseUtils.convertDpToPx(marginInDp);
+                    ; // + ShowcaseUtils.convertDpToPx(marginInDp);
         }
 
         // background
@@ -175,7 +175,7 @@ public class ShowcaseView extends RelativeLayout {
             yDescView = (int) (bottomFocusArea + bottomMarginFocusArea);
         }
         descriptionView.setX(xDescView);
-        descriptionView.setY(yDescView);
+        descriptionView.setY(Math.min(yDescView, this.getHeight()-descriptionView.getHeight()));
         super.dispatchDraw(canvas);
     }
 
