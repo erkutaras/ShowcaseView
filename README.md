@@ -92,7 +92,7 @@ Patches and new features are encouraged, and may be submitted by [forking this p
 
 # License
 
-    Copyright 2018 erkutaras
+    Copyright 2018-2019 erkutaras
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
