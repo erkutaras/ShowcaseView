@@ -18,8 +18,6 @@ import java.util.List;
 
 public final class ShowcaseManager {
 
-    private static final int INNER_MARGIN_OF_FOCUS_AREA_ON_DP = 20;
-
     private Context context;
     private String key;
     private final Builder builder;
