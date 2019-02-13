@@ -28,7 +28,7 @@ allprojects {
 **Step 2.** Add the library dependency to your project build.gradle:
 ```
 dependencies {
-    implementation 'com.github.erkutaras:ShowcaseView:1.1.0'
+    implementation 'com.github.erkutaras:ShowcaseView:1.2.0'
 }
 ```
 
@@ -54,42 +54,30 @@ ShowcaseManager.Builder builder = new ShowcaseManager.Builder();
 To display showcaseview, `ShowcaseManager.Builder` is mandatory.
 
 ### Mandatory
-
-`builder.context(Context)` - to start new activity
-
-`builder.key(String)` - to decide this showcase is displayed or not
-
-`builder.view(View)` - showcase will be displayed for this view
-
-`builder.descriptionTitle(String)` - view title
-
-`builder.descriptionText(String)` - short description of view's purpose
-
-`builder.add()` - adding the new showcase and can be called more than one to display multiple showcaseview
-
-`builder.build()` - prepare the focus area(s)
-
-`builder.show()` - display showcaseview
+| Usage         | Description | 
+| ------------- |-------------| 
+| `builder.context(Context)`        | to start new activity             |
+| `builder.key(String)` | to decide this showcase is displayed or not|
+| `builder.view(View)` |  showcase will be displayed for this view| 
+| `builder.descriptionTitle(String)` |  view title| 
+| `builder.descriptionText(String)` |  short description of view's purpose| 
+| `builder.add()` |  adding the new showcase and can be called more than one to display multiple showcaseview| 
+| `builder.build()` |  prepare the focus area(s)| 
+| `builder.show()` |  display showcaseview| 
 
 ### Optinal
-
-`builder.developerMode(boolean)` - when you test your code, showcaseview will be displayed always if this field is true
-
-`builder.descriptionImageRes(int)` - display and set image which is located above of title
-
-`builder.buttonText(String)` - display and set text of button
-
-`builder.alphaBackground(int)` - set alpha of background color
-
-`builder.colorBackground(int)` - set color of background
-
-`builder.colorFocusArea(int)` - set color of focus area
-
-`builder.colorDescText(int)` - set color of description text
-
-`builder.colorButtonText(int)` - set color of button text
-
-`builder.colorButtonBackground(int)` - set color of button background
+| Usage         | Description | 
+| ------------- |-------------| 
+| `builder.developerMode(boolean)` |  when you test your code, showcaseview will be displayed always if this field is true| 
+| `builder.descriptionImageRes(int)` |  display and set image which is located above of title| 
+| `builder.buttonText(String)` |  display and set text of button| 
+| `builder.alphaBackground(int)` |  set alpha of background color| 
+| `builder.colorBackground(int)` |  set color of background| 
+| `builder.colorFocusArea(int)` |  set color of focus area| 
+| `builder.colorDescText(int)` |  set color of description text| 
+| `builder.colorButtonText(int)` |  set color of button text| 
+| `builder.colorButtonBackground(int)` |  set color of button background| 
+| `builder.marginFocusArea(intInDp)` |  set margin of focus area| 
 
 ## Issues
 
@@ -104,7 +92,7 @@ Patches and new features are encouraged, and may be submitted by [forking this p
 
 # License
 
-    Copyright 2018 erkutaras
+    Copyright 2018-2019 erkutaras
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
