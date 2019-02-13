@@ -2,7 +2,7 @@ package com.erkutaras.showcaseview.sample;
 
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Switch;
 
@@ -48,6 +48,7 @@ public class ShowcaseSampleActivity extends AppCompatActivity {
                 .buttonText("DONE")
                 .key("TEST")
                 .developerMode(true)
+                .marginFocusArea(0)
                 .add().build()
                 .show();
     };
@@ -65,6 +66,7 @@ public class ShowcaseSampleActivity extends AppCompatActivity {
                 .developerMode(true)
                 .colorBackground(Color.GREEN)
                 .alphaBackground(80)
+                .marginFocusArea(10)
                 .add().build()
                 .show();
     };
@@ -82,6 +84,7 @@ public class ShowcaseSampleActivity extends AppCompatActivity {
                 .developerMode(true)
                 .colorButtonBackground(Color.BLUE)
                 .colorButtonText(Color.YELLOW)
+                .marginFocusArea(20)
                 .add().build()
                 .show();
     };
@@ -99,6 +102,7 @@ public class ShowcaseSampleActivity extends AppCompatActivity {
                 .developerMode(true)
                 .colorDescText(Color.GREEN)
                 .colorDescTitle(Color.RED)
+                .marginFocusArea(30)
                 .add().build()
                 .show();
     };
@@ -115,6 +119,7 @@ public class ShowcaseSampleActivity extends AppCompatActivity {
                 .key("TEST")
                 .developerMode(true)
                 .colorFocusArea(Color.CYAN)
+                .marginFocusArea(40)
                 .add().build()
                 .show();
     };
@@ -125,6 +130,7 @@ public class ShowcaseSampleActivity extends AppCompatActivity {
         builder.context(ShowcaseSampleActivity.this)
                 .key("TEST")
                 .developerMode(true)
+                .marginFocusArea(10)
                 // first view
                 .view(v2)
                 .descriptionImageRes(R.mipmap.ic_launcher)
@@ -138,6 +144,7 @@ public class ShowcaseSampleActivity extends AppCompatActivity {
                 .descriptionTitle("LOREM IPSUM DOLOR-2")
                 .descriptionText("Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.")
                 .buttonText("Cancel")
+                .marginFocusArea(20)
                 .add()
                 .build()
                 .show();

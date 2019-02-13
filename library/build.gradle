@@ -4,16 +4,13 @@ apply plugin: 'com.github.dcendents.android-maven'
 group='com.erkutaras.showcaseview'
 
 android {
-    compileSdkVersion 27
+    compileSdkVersion 28
 
     defaultConfig {
-        targetSdkVersion 27
+        targetSdkVersion 28
         minSdkVersion 14
-        versionCode 11
-        versionName "1.1.0"
-
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-
+        versionCode 12
+        versionName "1.2.0"
     }
 
     buildTypes {
@@ -32,5 +29,5 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'com.android.support:appcompat-v7:27.1.1'
+    implementation 'androidx.appcompat:appcompat:1.0.2'
 }
