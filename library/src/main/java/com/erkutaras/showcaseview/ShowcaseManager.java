@@ -1,10 +1,10 @@
 package com.erkutaras.showcaseview;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Rect;
 import android.os.Parcelable;
+import androidx.appcompat.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
@@ -77,7 +77,7 @@ public final class ShowcaseManager {
     }
 
     private boolean getSystemUiVisibility() {
-        Window window = ((Activity) context).getWindow();
+        Window window = ((AppCompatActivity) context).getWindow();
         View decorView = window.getDecorView();
         return decorView.getSystemUiVisibility() == View.VISIBLE;
     }
