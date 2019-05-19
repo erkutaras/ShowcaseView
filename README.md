@@ -79,6 +79,17 @@ To display showcaseview, `ShowcaseManager.Builder` is mandatory.
 | `builder.colorButtonBackground(int)` |  set color of button background| 
 | `builder.marginFocusArea(intInDp)` |  set margin of focus area| 
 
+### Listen to Showcase dismisses
+If you want to listen showcase dismisses, you can override in your Activity/Fragment like below with `ShowcaseManager.REQUEST_CODE_SHOWCASE`:
+```java
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        if (requestCode == ShowcaseManager.REQUEST_CODE_SHOWCASE && resultCode == Activity.RESULT_OK) {
+            // your code
+        }
+    }
+```
+
 ## Issues
 
 If you've found an error in this library, please file an [issue][1].
