@@ -1,5 +1,6 @@
 package com.erkutaras.showcaseview;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Rect;
@@ -17,6 +18,8 @@ import java.util.List;
  */
 
 public final class ShowcaseManager {
+
+    public static final int REQUEST_CODE_SHOWCASE = 7032;
 
     private Context context;
     private String key;
@@ -41,7 +44,7 @@ public final class ShowcaseManager {
         Intent intent = new Intent(context, ShowcaseActivity.class);
         intent.putParcelableArrayListExtra(ShowcaseActivity.EXTRAS_SHOWCASES, (ArrayList<? extends Parcelable>) builder.showcaseModelList);
         intent.putExtra(ShowcaseActivity.EXTRAS_SYSTEM_UI_VISIBILITY, getSystemUiVisibility());
-        context.startActivity(intent);
+        ((Activity) context).startActivityForResult(intent, REQUEST_CODE_SHOWCASE);
         ShowcaseUtils.ShowcaseSP.instance(context).show(key);
     }
 
@@ -55,6 +58,12 @@ public final class ShowcaseManager {
             Log.e(TAG, "Context can not be null.");
             return true;
         }
+
+        if (!(builder.context instanceof Activity)) {
+            Log.e(TAG, "Context must be instance of Activity.");
+            return true;
+        }
+
         if (ShowcaseUtils.isNull(builder.key)) {
             Log.e(TAG, "Key can not be null.");
             return true;

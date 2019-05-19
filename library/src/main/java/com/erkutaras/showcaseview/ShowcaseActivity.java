@@ -1,5 +1,7 @@
 package com.erkutaras.showcaseview;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
@@ -36,6 +38,7 @@ public class ShowcaseActivity extends AppCompatActivity {
             if (currentIndex < showcaseModels.size()) {
                 layout.updateView(showcaseModels.get(currentIndex));
             } else {
+                setResult(Activity.RESULT_OK);
                 finish();
             }
         });

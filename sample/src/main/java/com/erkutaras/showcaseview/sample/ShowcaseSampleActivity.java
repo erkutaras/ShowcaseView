@@ -1,10 +1,15 @@
 package com.erkutaras.showcaseview.sample;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Switch;
+import android.widget.Toast;
 
 import com.erkutaras.showcaseview.ShowcaseManager;
 
@@ -35,6 +40,13 @@ public class ShowcaseSampleActivity extends AppCompatActivity {
         v1.setOnClickListener(listener5);
         v2 = findViewById(R.id.radioButton);
         v2.setOnClickListener(listener5);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        if (requestCode == ShowcaseManager.REQUEST_CODE_SHOWCASE && resultCode == Activity.RESULT_OK) {
+            Toast.makeText(this, "All showcases are closed", Toast.LENGTH_SHORT).show();
+        }
     }
 
     // default display
