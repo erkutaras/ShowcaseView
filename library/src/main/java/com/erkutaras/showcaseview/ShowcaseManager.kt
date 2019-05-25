@@ -18,7 +18,7 @@ import java.util.ArrayList
 
 class ShowcaseManager private constructor(private val builder: Builder) {
 
-    private val context: Context?
+    private val context: Context = builder.context
     private val key: String?
 
     private val systemUiVisibility: Boolean
@@ -29,7 +29,6 @@ class ShowcaseManager private constructor(private val builder: Builder) {
         }
 
     init {
-        this.context = builder.context
         this.key = builder.key
     }
 
@@ -85,7 +84,7 @@ class ShowcaseManager private constructor(private val builder: Builder) {
     }
 
     class Builder {
-        internal var context: Context? = null
+        internal lateinit var context: Context
         internal var view: View? = null
         internal val showcaseModelList: MutableList<ShowcaseModel>
         internal var key: String? = null
@@ -246,6 +245,7 @@ class ShowcaseManager private constructor(private val builder: Builder) {
 
     companion object {
 
+        @JvmField
         val REQUEST_CODE_SHOWCASE = 7032
         private val TAG = "ShowcaseManager"
     }
