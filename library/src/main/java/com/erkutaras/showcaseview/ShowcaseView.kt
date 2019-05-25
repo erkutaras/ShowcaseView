@@ -100,7 +100,7 @@ class ShowcaseView : RelativeLayout {
         }
 
         val button = descriptionView.findViewById<Button>(R.id.button_done)
-        if (ShowcaseUtils.isNonNull(buttonText) && buttonText.isNotEmpty()) {
+        if (buttonText?.isNotEmpty() == true) {
             button.text = buttonText
         }
         if (ShowcaseUtils.isNotZero(colorButtonText.toFloat())) {
