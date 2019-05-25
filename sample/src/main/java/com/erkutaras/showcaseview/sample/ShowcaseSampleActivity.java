@@ -44,7 +44,7 @@ public class ShowcaseSampleActivity extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        if (requestCode == ShowcaseManager.REQUEST_CODE_SHOWCASE && resultCode == Activity.RESULT_OK) {
+        if (requestCode == ShowcaseManager.Companion.getREQUEST_CODE_SHOWCASE() && resultCode == Activity.RESULT_OK) {
             Toast.makeText(this, "All showcases are closed", Toast.LENGTH_SHORT).show();
         }
     }
