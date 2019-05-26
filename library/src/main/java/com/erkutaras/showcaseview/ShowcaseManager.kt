@@ -19,33 +19,22 @@ import java.util.ArrayList
 class ShowcaseManager private constructor(private val builder: Builder) {
 
     private val context: Context = builder.context
-    private val key: String?
-
-    private val systemUiVisibility: Boolean
-        get() {
-            val window = (context as AppCompatActivity).window
-            val decorView = window.decorView
-            return decorView.systemUiVisibility == View.VISIBLE
-        }
-
-    init {
-        this.key = builder.key
-    }
+    private val key: String = builder.key
 
     fun show() {
         if (hasNullParameters(builder)) {
             return
         }
 
-        if (!builder.isDevelopMode && ShowcaseUtils.ShowcaseSP.instance(context!!).getShowing(key!!)) {
+        if (!builder.isDevelopMode && ShowcaseUtils.ShowcaseSP.instance(context).getShowing(key)) {
             return
         }
 
         val intent = Intent(context, ShowcaseActivity::class.java)
         intent.putParcelableArrayListExtra(ShowcaseActivity.EXTRAS_SHOWCASES, builder.showcaseModelList as ArrayList<out Parcelable>)
-        intent.putExtra(ShowcaseActivity.EXTRAS_SYSTEM_UI_VISIBILITY, systemUiVisibility)
+        intent.putExtra(ShowcaseActivity.EXTRAS_SYSTEM_UI_VISIBILITY, getSystemUiVisibility())
         (context as Activity).startActivityForResult(intent, REQUEST_CODE_SHOWCASE)
-        ShowcaseUtils.ShowcaseSP.instance(context).show(key!!)
+        ShowcaseUtils.ShowcaseSP.instance(context).show(key)
     }
 
     private fun hasNullParameters(builder: Builder?): Boolean {
@@ -83,15 +72,21 @@ class ShowcaseManager private constructor(private val builder: Builder) {
         return false
     }
 
+    private fun getSystemUiVisibility(): Boolean {
+        val window = (context as AppCompatActivity).window
+        val decorView = window.decorView
+        return decorView.systemUiVisibility == View.VISIBLE
+    }
+
     class Builder {
         internal lateinit var context: Context
-        internal var view: View? = null
+        internal lateinit var view: View
         internal val showcaseModelList: MutableList<ShowcaseModel>
-        internal var key: String? = null
+        internal lateinit var key: String
         private var descriptionImageRes: Int = 0
-        internal var descriptionTitle: String? = null
-        internal var descriptionText: String? = null
-        private var buttonText: String? = null
+        internal lateinit var descriptionTitle: String
+        internal lateinit var descriptionText: String
+        private lateinit var buttonText: String
         private var colorDescTitle: Int = 0
         private var colorDescText: Int = 0
         private var colorButtonText: Int = 0
@@ -200,16 +195,16 @@ class ShowcaseManager private constructor(private val builder: Builder) {
 
         private fun createShowcaseModel(): ShowcaseModel {
             val viewPositionRect = Rect()
-            view!!.getGlobalVisibleRect(viewPositionRect)
+            view.getGlobalVisibleRect(viewPositionRect)
             val circleCenterX = getCircleCenterX(viewPositionRect).toFloat()
             val circleCenterY = getCircleCenterY(viewPositionRect)
             val circleCenterRadius = calculateRadius(marginFocusArea)
 
             return ShowcaseModel.Builder()
                 .descriptionImageRes(descriptionImageRes)
-                .descriptionTitle(descriptionTitle!!)
-                .descriptionText(descriptionText!!)
-                .buttonText(buttonText!!)
+                .descriptionTitle(descriptionTitle)
+                .descriptionText(descriptionText)
+                .buttonText(buttonText)
                 .colorDescTitle(colorDescTitle)
                 .colorDescText(colorDescText)
                 .colorButtonText(colorButtonText)
@@ -225,19 +220,19 @@ class ShowcaseManager private constructor(private val builder: Builder) {
         }
 
         private fun getCircleCenterX(viewPositionRect: Rect): Int {
-            return viewPositionRect.left + view!!.width / 2
+            return viewPositionRect.left + view.width / 2
         }
 
         private fun getCircleCenterY(viewPositionRect: Rect): Float {
-            return (viewPositionRect.top + view!!.height / 2).toFloat()
+            return (viewPositionRect.top + view.height / 2).toFloat()
         }
 
         /**
          * @return finds out smallest radius of a circle that contains target view
          */
         private fun calculateRadius(marginFocusArea: Int): Float {
-            val x = (view!!.width / 2).toFloat()
-            val y = (view!!.height / 2).toFloat()
+            val x = (view.width / 2).toFloat()
+            val y = (view.height / 2).toFloat()
             val radius = Math.sqrt(Math.pow(x.toDouble(), 2.0) + Math.pow(y.toDouble(), 2.0)).toFloat()
             return radius + ShowcaseUtils.convertDpToPx(marginFocusArea.toFloat())
         }
