@@ -10,8 +10,8 @@ android {
     defaultConfig {
         targetSdkVersion 28
         minSdkVersion 14
-        versionCode 17
-        versionName "1.3.5"
+        versionCode 18
+        versionName "1.3.6"
     }
 
     buildTypes {
@@ -31,5 +31,5 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation 'androidx.appcompat:appcompat:1.0.2'
+    implementation 'androidx.appcompat:appcompat:1.1.0'
 }
