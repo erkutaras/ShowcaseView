@@ -21,7 +21,7 @@ import android.widget.TextView
 /**
  * Created by erkut.aras on 23.02.2018.
  */
-class ShowcaseView : RelativeLayout {
+open class ShowcaseView : RelativeLayout {
 
     private val FOCUS_AREA_TOP_MARGIN_IN_DP = 50
     private val FOCUS_AREA_BOTTOM_MARGIN_IN_DP = 20
