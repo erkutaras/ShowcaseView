@@ -12,6 +12,7 @@ import android.graphics.Shader
 import android.os.Build
 import androidx.annotation.RequiresApi
 import android.util.AttributeSet
+import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.ImageView
@@ -134,6 +135,10 @@ open class ShowcaseView : RelativeLayout {
 
     @RequiresApi(api = Build.VERSION_CODES.HONEYCOMB)
     override fun dispatchDraw(canvas: Canvas) {
+        if (radiusFocusArea <= 0) {
+            Log.d(TAG, "radius must be > 0. Use ShowcaseManager after view inflation.")
+            return
+        }
         if (cxFocusArea == 0f || cyFocusArea == 0f) {
             cxFocusArea = radiusFocusArea + ShowcaseUtils.convertDpToPx(marginInDp)
             cyFocusArea = (descriptionView.y + descriptionView.height.toFloat() + radiusFocusArea
@@ -174,4 +179,7 @@ open class ShowcaseView : RelativeLayout {
         super.dispatchDraw(canvas)
     }
 
+    companion object {
+        private const val TAG = "ShowcaseView"
+    }
 }
