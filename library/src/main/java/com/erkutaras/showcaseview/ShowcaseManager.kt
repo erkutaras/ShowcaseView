@@ -4,13 +4,16 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.graphics.Rect
+import android.os.Build
 import android.os.Parcelable
 import androidx.appcompat.app.AppCompatActivity
 import android.util.Log
 import android.view.View
-import android.view.Window
+import androidx.annotation.RequiresApi
 
 import java.util.ArrayList
+import kotlin.math.pow
+import kotlin.math.sqrt
 
 /**
  * Created by erkut.aras on 23.02.2018.
@@ -96,6 +99,8 @@ class ShowcaseManager private constructor(private val builder: Builder) {
         private var colorFocusArea: Int = 0
         internal var isDevelopMode: Boolean = false
         private var marginFocusArea: Int = 0
+        private var type: ShowcaseType = ShowcaseType.CIRCLE
+        private var gradientFocusEnabled: Boolean = false
 
         init {
             showcaseModelList = ArrayList()
@@ -181,6 +186,27 @@ class ShowcaseManager private constructor(private val builder: Builder) {
             return this
         }
 
+        fun circle(): Builder {
+            this.type = ShowcaseType.CIRCLE
+            return this
+        }
+
+        fun rectangle(): Builder {
+            this.type = ShowcaseType.RECTANGLE
+            return this
+        }
+
+        @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
+        fun roundedRectangle(): Builder {
+            this.type = ShowcaseType.ROUND_RECTANGLE
+            return this
+        }
+
+        fun gradientFocusEnabled(enabled: Boolean): Builder {
+            this.gradientFocusEnabled = enabled
+            return this
+        }
+
         fun add(): Builder {
             this.showcaseModelList.add(createShowcaseModel())
             return this
@@ -199,23 +225,27 @@ class ShowcaseManager private constructor(private val builder: Builder) {
             val circleCenterX = getCircleCenterX(viewPositionRect).toFloat()
             val circleCenterY = getCircleCenterY(viewPositionRect)
             val circleCenterRadius = calculateRadius(marginFocusArea)
+            val rect = calculateRect(marginFocusArea, viewPositionRect)
 
-            return ShowcaseModel.Builder()
-                .descriptionImageRes(descriptionImageRes)
-                .descriptionTitle(descriptionTitle)
-                .descriptionText(descriptionText)
-                .buttonText(buttonText)
-                .colorDescTitle(colorDescTitle)
-                .colorDescText(colorDescText)
-                .colorButtonText(colorButtonText)
-                .colorButtonBackground(colorButtonBackground)
-                .colorBackground(colorBackground)
-                .alphaBackground(alphaBackground)
-                .colorFocusArea(colorFocusArea)
-                .cxFocusArea(circleCenterX)
-                .cyFocusArea(circleCenterY)
-                .radiusFocusArea(circleCenterRadius)
-                .build()
+            return ShowcaseModel(
+                descriptionImageRes = descriptionImageRes,
+                descriptionTitle = descriptionTitle,
+                descriptionText = descriptionText,
+                buttonText = buttonText,
+                colorDescTitle = colorDescTitle,
+                colorDescText = colorDescText,
+                colorButtonText = colorButtonText,
+                colorButtonBackground = colorButtonBackground,
+                colorBackground = colorBackground,
+                alphaBackground = alphaBackground,
+                colorFocusArea = colorFocusArea,
+                cxFocusArea = circleCenterX,
+                cyFocusArea = circleCenterY,
+                radiusFocusArea = circleCenterRadius,
+                rect = rect,
+                type = type,
+                gradientFocusEnabled = gradientFocusEnabled
+            )
 
         }
 
@@ -233,8 +263,18 @@ class ShowcaseManager private constructor(private val builder: Builder) {
         private fun calculateRadius(marginFocusArea: Int): Float {
             val x = (view.width / 2).toFloat()
             val y = (view.height / 2).toFloat()
-            val radius = Math.sqrt(Math.pow(x.toDouble(), 2.0) + Math.pow(y.toDouble(), 2.0)).toFloat()
+            val radius = sqrt(x.toDouble().pow(2.0) + y.toDouble().pow(2.0)).toFloat()
             return radius + ShowcaseUtils.convertDpToPx(marginFocusArea.toFloat())
+        }
+
+        private fun calculateRect(marginFocusArea: Int, viewPositionRect: Rect): Rect {
+            val margin = ShowcaseUtils.convertDpToPx(marginFocusArea.toFloat())
+            return Rect(
+                (viewPositionRect.left - margin).toInt(),
+                (viewPositionRect.top - margin).toInt(),
+                (viewPositionRect.right + margin).toInt(),
+                (viewPositionRect.bottom + margin).toInt()
+            )
         }
     }
 

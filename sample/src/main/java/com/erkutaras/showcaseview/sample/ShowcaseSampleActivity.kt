@@ -10,6 +10,7 @@ import android.widget.Switch
 import android.widget.Toast
 
 import com.erkutaras.showcaseview.ShowcaseManager
+import com.erkutaras.showcaseview.ShowcaseUtils
 
 /**
  * Created by erkut.aras on 23.02.2018.
@@ -34,6 +35,7 @@ class ShowcaseSampleActivity : AppCompatActivity() {
             .key("TEST")
             .developerMode(true)
             .marginFocusArea(0)
+            .gradientFocusEnabled(true)
             .add().build()
             .show()
     }
@@ -70,6 +72,7 @@ class ShowcaseSampleActivity : AppCompatActivity() {
             .colorButtonBackground(Color.BLUE)
             .colorButtonText(Color.YELLOW)
             .marginFocusArea(20)
+            .circle()
             .add().build()
             .show()
     }
@@ -87,7 +90,8 @@ class ShowcaseSampleActivity : AppCompatActivity() {
             .developerMode(true)
             .colorDescText(Color.GREEN)
             .colorDescTitle(Color.RED)
-            .marginFocusArea(30)
+            .marginFocusArea(10)
+            .roundedRectangle()
             .add().build()
             .show()
     }
@@ -104,7 +108,9 @@ class ShowcaseSampleActivity : AppCompatActivity() {
             .key("TEST")
             .developerMode(true)
             .colorFocusArea(Color.CYAN)
-            .marginFocusArea(40)
+            .marginFocusArea(10)
+            .rectangle()
+            .gradientFocusEnabled(true)
             .add().build()
             .show()
     }

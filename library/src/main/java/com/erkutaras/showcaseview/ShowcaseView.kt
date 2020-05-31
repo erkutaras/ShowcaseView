@@ -1,14 +1,7 @@
 package com.erkutaras.showcaseview
 
 import android.content.Context
-import android.graphics.Canvas
-import android.graphics.Color
-import android.graphics.Paint
-import android.graphics.PorterDuff
-import android.graphics.PorterDuffXfermode
-import android.graphics.RadialGradient
-import android.graphics.RectF
-import android.graphics.Shader
+import android.graphics.*
 import android.os.Build
 import androidx.annotation.RequiresApi
 import android.util.AttributeSet
@@ -30,10 +23,12 @@ open class ShowcaseView : RelativeLayout {
     private val descriptionView: View =
         View.inflate(context, R.layout.layout_intro_description, null)
     private var onClickListener: OnClickListener? = null
+
     // updatable fields for focused area
     private var colorBackground: Int = 0
     private var alphaBackground: Int = 0
     private var colorFocusArea: Int = 0
+
     // can not be updated fields for focused area
     private var radiusFocusArea: Float = 0.toFloat()
     private var xDescView: Int = 0
@@ -41,6 +36,9 @@ open class ShowcaseView : RelativeLayout {
     private var marginInDp: Float = 0.toFloat()
     private var cxFocusArea: Float = 0.toFloat()
     private var cyFocusArea: Float = 0.toFloat()
+    private var rect: Rect = Rect()
+    private var type: ShowcaseType = ShowcaseType.CIRCLE
+    private var gradientFocusEnabled: Boolean = false
 
     constructor(context: Context) : super(context) {
         init()
@@ -127,6 +125,9 @@ open class ShowcaseView : RelativeLayout {
         cxFocusArea = showcaseModel.cxFocusArea
         cyFocusArea = showcaseModel.cyFocusArea
         radiusFocusArea = showcaseModel.radiusFocusArea
+        rect = showcaseModel.rect ?: Rect()
+        type = showcaseModel.type
+        gradientFocusEnabled = showcaseModel.gradientFocusEnabled
     }
 
     override fun setOnClickListener(onClickListener: OnClickListener?) {
@@ -151,32 +152,54 @@ open class ShowcaseView : RelativeLayout {
         paint.color = colorBackground
         paint.alpha = alphaBackground
         canvas.drawRect(rectF, paint)
+
         // focus area
         paint.color = colorFocusArea
         paint.xfermode = PorterDuffXfermode(PorterDuff.Mode.CLEAR)
-        canvas.drawCircle(cxFocusArea, cyFocusArea, radiusFocusArea, paint)
+        drawFocusArea(paint, canvas)
+
         // shadow for focus area
         val shadowPaint = Paint()
         shadowPaint.color = colorBackground
         shadowPaint.alpha = alphaBackground
         shadowPaint.strokeWidth = 1.0f
         shadowPaint.style = Paint.Style.FILL_AND_STROKE
+        shadowPaint.shader = Shader()
         shadowPaint.shader = RadialGradient(cxFocusArea, cyFocusArea, radiusFocusArea,
-            colorFocusArea, shadowPaint.color, Shader.TileMode.CLAMP)
-        canvas.drawCircle(cxFocusArea, cyFocusArea, radiusFocusArea, shadowPaint)
+            colorFocusArea, if (gradientFocusEnabled) shadowPaint.color else colorFocusArea, Shader.TileMode.CLAMP)
+        drawFocusArea(shadowPaint, canvas)
+
         // descriptionView relocate related to focusArea
         val topMarginFocusArea = ShowcaseUtils.convertDpToPx(FOCUS_AREA_TOP_MARGIN_IN_DP.toFloat())
         val bottomMarginFocusArea = ShowcaseUtils.convertDpToPx(FOCUS_AREA_BOTTOM_MARGIN_IN_DP.toFloat())
         val topFocusArea = cyFocusArea - radiusFocusArea
         val bottomFocusArea = cyFocusArea + radiusFocusArea
-        if (topFocusArea >= descriptionView.height + topMarginFocusArea) {
-            yDescView = (topFocusArea - topMarginFocusArea - descriptionView.height.toFloat()).toInt()
+        yDescView = if (topFocusArea >= descriptionView.height + topMarginFocusArea) {
+            (topFocusArea - topMarginFocusArea - descriptionView.height.toFloat()).toInt()
         } else {
-            yDescView = (bottomFocusArea + bottomMarginFocusArea).toInt()
+            (bottomFocusArea + bottomMarginFocusArea).toInt()
         }
         descriptionView.x = xDescView.toFloat()
         descriptionView.y = yDescView.toFloat()
         super.dispatchDraw(canvas)
+    }
+
+    private fun drawFocusArea(paint: Paint, canvas: Canvas) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            when (type) {
+                ShowcaseType.CIRCLE -> canvas.drawCircle(cxFocusArea, cyFocusArea, radiusFocusArea, paint)
+                ShowcaseType.RECTANGLE -> canvas.drawRect(rect, paint)
+                ShowcaseType.ROUND_RECTANGLE -> {
+                    val radius = ShowcaseUtils.convertDpToPx(5f)
+                    canvas.drawRoundRect(rect.left.toFloat(), rect.top.toFloat(), rect.right.toFloat(), rect.bottom.toFloat(), radius, radius, paint)
+                }
+            }
+        } else {
+            when (type) {
+                ShowcaseType.CIRCLE -> canvas.drawCircle(cxFocusArea, cyFocusArea, radiusFocusArea, paint)
+                else -> canvas.drawRect(rect, paint)
+            }
+        }
     }
 
     companion object {

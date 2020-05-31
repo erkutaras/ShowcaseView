@@ -1,17 +1,18 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
 apply plugin: 'com.github.dcendents.android-maven'
 
 group='com.erkutaras.showcaseview'
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion 29
 
     defaultConfig {
-        targetSdkVersion 28
+        targetSdkVersion 29
         minSdkVersion 14
-        versionCode 20
-        versionName "1.3.8"
+        versionCode 21
+        versionName "1.4.0"
     }
 
     buildTypes {
@@ -24,6 +25,10 @@ android {
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    androidExtensions {
+        features = ["parcelize"]
     }
 
 }
