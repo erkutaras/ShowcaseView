@@ -66,18 +66,22 @@ To display showcaseview, `ShowcaseManager.Builder` is mandatory.
 | `builder.show()` |  display showcaseview| 
 
 ### Optinal
-| Usage         | Description | 
-| ------------- |-------------| 
-| `builder.developerMode(boolean)` |  when you test your code, showcaseview will be displayed always if this field is true| 
-| `builder.descriptionImageRes(int)` |  display and set image which is located above of title| 
-| `builder.buttonText(String)` |  display and set text of button| 
-| `builder.alphaBackground(int)` |  set alpha of background color| 
-| `builder.colorBackground(int)` |  set color of background| 
-| `builder.colorFocusArea(int)` |  set color of focus area| 
-| `builder.colorDescText(int)` |  set color of description text| 
-| `builder.colorButtonText(int)` |  set color of button text| 
-| `builder.colorButtonBackground(int)` |  set color of button background| 
-| `builder.marginFocusArea(intInDp)` |  set margin of focus area| 
+| Usage                                | Description                                                                           | 
+| ------------------------------------ |-------------------------------------------------------------------------------------- | 
+| `builder.developerMode(boolean)`     |  when you test your code, showcaseview will be displayed always if this field is true | 
+| `builder.descriptionImageRes(int)`   |  display and set image which is located above of title                                | 
+| `builder.buttonText(String)`         |  display and set text of button                                                       | 
+| `builder.alphaBackground(int)`       |  set alpha of background color                                                        | 
+| `builder.colorBackground(int)`       |  set color of background                                                              | 
+| `builder.colorFocusArea(int)`        |  set color of focus area                                                              | 
+| `builder.colorDescText(int)`         |  set color of description text                                                        | 
+| `builder.colorButtonText(int)`       |  set color of button text                                                             | 
+| `builder.colorButtonBackground(int)` |  set color of button background                                                       | 
+| `builder.marginFocusArea(intInDp)`   |  set margin of focus area                                                             | 
+| `builder.circle()`                   |  set circle focus area                                                                | 
+| `builder.rectangle()`                |  set rectangle focus area                                                             | 
+| `builder.roundedRectangle()`         |  set rounded-rectangle focus area                                                     | 
+| `builder.gradientFocusEnabled()`     |  set gradient enabled for focus area                                                  | 
 
 ### Listen to Showcase dismisses
 If you want to listen showcase dismisses, you can override in your Activity/Fragment like below with `ShowcaseManager.REQUEST_CODE_SHOWCASE`:
