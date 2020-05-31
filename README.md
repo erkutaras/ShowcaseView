@@ -3,7 +3,7 @@
 [![](https://img.shields.io/badge/Android%20Arsenal-ShowcaseView-brightgreen.svg)](https://android-arsenal.com/details/1/7438)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
-<img src="https://raw.githubusercontent.com/erkutaras/ShowcaseView/master/screenshots/device-2020-05-31-211619.png" width="170"><img src="https://raw.githubusercontent.com/erkutaras/ShowcaseView/master/screenshots/device-2020-05-31-211504.png" width="170"><img src="https://raw.githubusercontent.com/erkutaras/ShowcaseView/master/screenshots/device-2020-05-31-212416.png" width="170"><img src="https://raw.githubusercontent.com/erkutaras/ShowcaseView/master/screenshots/device-2020-05-31-211532.png" width="170"><img src="https://raw.githubusercontent.com/erkutaras/ShowcaseView/master/screenshots/device-2020-05-31-212441.png" width="170">
+<img src="https://raw.githubusercontent.com/erkutaras/ShowcaseView/master/screenshots/device-2020-05-31-211619.png" width="170">     <img src="https://raw.githubusercontent.com/erkutaras/ShowcaseView/master/screenshots/device-2020-05-31-211504.png" width="170">     <img src="https://raw.githubusercontent.com/erkutaras/ShowcaseView/master/screenshots/device-2020-05-31-212416.png" width="170">     <img src="https://raw.githubusercontent.com/erkutaras/ShowcaseView/master/screenshots/device-2020-05-31-211532.png" width="170">     <img src="https://raw.githubusercontent.com/erkutaras/ShowcaseView/master/screenshots/device-2020-05-31-212441.png" width="170">
 
 ShowcaseView is a simple-use library for Android to display new feature or whatever to the users.
 
