@@ -4,4 +4,5 @@
     <color name="intro_text">#eeeeee</color>
     <color name="intro_button_background">#666666</color>
     <color name="intro_button_text">#ffffff</color>
+    <color name="white">#ffffff</color>
 </resources>

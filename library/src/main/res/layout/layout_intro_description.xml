@@ -1,18 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="left"
-    android:orientation="vertical"
     android:padding="@dimen/padding">
+
+
+    <ImageButton
+        android:id="@+id/img_cancel"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:background="@drawable/ic_outline_cancel"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:ignore="ContentDescription" />
+
+
+
 
     <ImageView
         android:id="@+id/imageView_description"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:src="@drawable/showcase_launcher" />
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        tools:src="@drawable/showcase_launcher"
+        app:layout_constraintTop_toBottomOf="@+id/img_cancel"
+        app:layout_constraintStart_toStartOf="parent"
+        />
 
     <TextView
         android:id="@+id/textView_description_title"
@@ -25,7 +40,10 @@
         android:textSize="@dimen/textSize_title"
         android:textStyle="bold"
         tools:text="LOREM IPSUM DOLOR"
-        android:textColor="@color/intro_title" />
+        android:textColor="@color/intro_title"
+        app:layout_constraintTop_toBottomOf="@+id/imageView_description"
+        app:layout_constraintStart_toStartOf="parent"
+        />
 
     <TextView
         android:id="@+id/textView_description"
@@ -38,22 +56,34 @@
         android:textSize="@dimen/textSize_description"
         android:textStyle="normal"
         tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
-        android:textColor="@color/intro_text" />
+        android:textColor="@color/intro_text"
+        app:layout_constraintTop_toBottomOf="@+id/textView_description_title"
+        app:layout_constraintStart_toStartOf="parent"
+        />
 
-    <Button
-        android:id="@+id/button_done"
+    <ImageButton
+        android:id="@+id/img_next"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/padding"
-        android:fontFamily="sans-serif"
-        android:paddingBottom="15dp"
-        android:paddingLeft="35dp"
-        android:paddingRight="35dp"
-        android:paddingTop="15dp"
-        android:textSize="@dimen/textSize_description"
-        android:textStyle="bold"
-        android:background="@color/intro_button_background"
-        tools:text="Done"
-        android:textColor="@color/intro_button_text" />
+        android:background="@drawable/rect_background"
+        android:gravity="center"
+        android:src="@drawable/ic_next_arrow"
+        app:layout_constraintTop_toBottomOf="@+id/textView_description"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:ignore="RtlCompat" />
 
-</LinearLayout>
+
+    <ImageButton
+        android:id="@+id/img_previous"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/padding"
+        android:gravity="center"
+        android:background="@drawable/rect_background"
+        android:src="@drawable/ic_previous_arrow"
+        app:layout_constraintTop_toBottomOf="@+id/textView_description"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="RtlCompat" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
