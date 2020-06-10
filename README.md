@@ -46,6 +46,7 @@ ShowcaseManager.Builder builder = new ShowcaseManager.Builder();
                 .descriptionTitle("LOREM IPSUM")
                 .descriptionText("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.")
                 .buttonText("Done")
+                .buttonVisibility(true)
                 .add()
                 .build()
                 .show();
@@ -71,6 +72,7 @@ To display showcaseview, `ShowcaseManager.Builder` is mandatory.
 | `builder.developerMode(boolean)`     |  when you test your code, showcaseview will be displayed always if this field is true | 
 | `builder.descriptionImageRes(int)`   |  display and set image which is located above of title                                | 
 | `builder.buttonText(String)`         |  display and set text of button                                                       | 
+| `builder.buttonVisibility(boolean)`  |  set visibility of button (default true)                                              | 
 | `builder.alphaBackground(int)`       |  set alpha of background color                                                        | 
 | `builder.colorBackground(int)`       |  set color of background                                                              | 
 | `builder.colorFocusArea(int)`        |  set color of focus area                                                              | 
