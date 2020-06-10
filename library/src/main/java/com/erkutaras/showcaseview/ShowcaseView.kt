@@ -71,6 +71,7 @@ open class ShowcaseView : RelativeLayout {
         val descriptionImageRes = showcaseModel.descriptionImageRes
         val descriptionTitle = showcaseModel.descriptionTitle
         val descriptionText = showcaseModel.descriptionText
+        val buttonVisibility : Boolean = showcaseModel.buttonVisibility
         val buttonText = showcaseModel.buttonText
         val colorDescTitle = showcaseModel.colorDescTitle
         val colorDescText = showcaseModel.colorDescText
@@ -85,6 +86,7 @@ open class ShowcaseView : RelativeLayout {
         } else {
             imageView.visibility = View.GONE
         }
+
 
         val textViewTitle = descriptionView.findViewById<TextView>(R.id.textView_description_title)
         textViewTitle.text = descriptionTitle
@@ -102,6 +104,13 @@ open class ShowcaseView : RelativeLayout {
         if (buttonText?.isNotEmpty() == true) {
             button.text = buttonText
         }
+
+        button.visibility = if(buttonVisibility){
+            View.VISIBLE
+        }else{
+            View.GONE
+        }
+
         if (ShowcaseUtils.isNotZero(colorButtonText.toFloat())) {
             button.setTextColor(colorButtonText)
         }

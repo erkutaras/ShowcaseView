@@ -14,6 +14,7 @@ class ShowcaseModel(
     val descriptionTitle: String? = null,
     val descriptionText: String? = null,
     val buttonText: String? = null,
+    val buttonVisibility: Boolean = true,
     val colorDescTitle: Int = 0,
     val colorDescText: Int = 0,
     val colorButtonText: Int = 0,

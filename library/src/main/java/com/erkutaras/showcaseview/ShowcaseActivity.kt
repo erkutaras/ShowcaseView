@@ -3,6 +3,7 @@ package com.erkutaras.showcaseview
 import android.app.Activity
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.ImageButton
 import androidx.appcompat.app.AppCompatActivity
@@ -40,11 +41,14 @@ class ShowcaseActivity : AppCompatActivity(), OnIndexChangedListener {
                 "To pass the extras, you need to pass mandatory parameters to ShowcaseManager.")
         showcaseModels = extras.getParcelableArrayList<ShowcaseModel>(EXTRAS_SHOWCASES) as ArrayList<ShowcaseModel>
 
-
         if (showcaseModels.isEmpty()) {
             finish()
             return
         }
+
+
+        //To initialize OnIndexChangedListener
+        initOnIndexChangedListener()
 
         //To initialize the main layout view
         layout = ShowcaseView(this)
@@ -52,14 +56,14 @@ class ShowcaseActivity : AppCompatActivity(), OnIndexChangedListener {
         //To add the view
         setContentView(layout)
 
-        //To initialize OnIndexChangedListener
-        initOnIndexChangedListener()
-
-        //To initialize views
-        initView()
+        //To handle on layout clicked
+        onLayoutClicked()
 
         //To update the layout
         updateView()
+
+        //To initialize views
+        initView()
 
         //To hide or show buttons
         hideAndShowButtonsContainer()
@@ -69,24 +73,9 @@ class ShowcaseActivity : AppCompatActivity(), OnIndexChangedListener {
 
         //To send a call back of the currentIndex
         updateCurrentIndex()
-
-
-
-        layout.setOnClickListener {
-            currentIndex += 1
-            if (currentIndex < showcaseModels.size) {
-                updateView()
-            } else {
-                updateCurrentIndex()//send the call back
-                setResult(Activity.RESULT_OK)
-                finish()
-            }
-        }
-
-
     }
 
-
+    private  val TAG = "ShowcaseActivity"
     /**
      * To initialize views
      * */
@@ -123,6 +112,22 @@ class ShowcaseActivity : AppCompatActivity(), OnIndexChangedListener {
             }
         }
 
+    }
+
+    /**
+     * To handle on layout clicked
+     * */
+    private fun onLayoutClicked(){
+        layout.setOnClickListener {
+            Log.e(TAG, "onClick" )
+            currentIndex += 1
+            if (currentIndex < showcaseModels.size) {
+                updateView()
+                updateCurrentIndex()//send the call back
+            } else {
+                finishActivity()
+            }
+        }
     }
 
     /**

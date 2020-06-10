@@ -90,6 +90,7 @@ class ShowcaseManager private constructor(private val builder: Builder) {
         internal lateinit var descriptionTitle: String
         internal lateinit var descriptionText: String
         private lateinit var buttonText: String
+        private var buttonVisibility: Boolean = true
         private var colorDescTitle: Int = 0
         private var colorDescText: Int = 0
         private var colorButtonText: Int = 0
@@ -138,6 +139,11 @@ class ShowcaseManager private constructor(private val builder: Builder) {
 
         fun buttonText(buttonText: String): Builder {
             this.buttonText = buttonText
+            return this
+        }
+
+        fun buttonVisibility(buttonVisibility: Boolean): Builder {
+            this.buttonVisibility = buttonVisibility
             return this
         }
 
@@ -228,23 +234,24 @@ class ShowcaseManager private constructor(private val builder: Builder) {
             val rect = calculateRect(marginFocusArea, viewPositionRect)
 
             return ShowcaseModel(
-                descriptionImageRes = descriptionImageRes,
-                descriptionTitle = descriptionTitle,
-                descriptionText = descriptionText,
-                buttonText = buttonText,
-                colorDescTitle = colorDescTitle,
-                colorDescText = colorDescText,
-                colorButtonText = colorButtonText,
-                colorButtonBackground = colorButtonBackground,
-                colorBackground = colorBackground,
-                alphaBackground = alphaBackground,
-                colorFocusArea = colorFocusArea,
-                cxFocusArea = circleCenterX,
-                cyFocusArea = circleCenterY,
-                radiusFocusArea = circleCenterRadius,
-                rect = rect,
-                type = type,
-                gradientFocusEnabled = gradientFocusEnabled
+                    descriptionImageRes = descriptionImageRes,
+                    descriptionTitle = descriptionTitle,
+                    descriptionText = descriptionText,
+                    buttonText = buttonText,
+                    buttonVisibility = buttonVisibility,
+                    colorDescTitle = colorDescTitle,
+                    colorDescText = colorDescText,
+                    colorButtonText = colorButtonText,
+                    colorButtonBackground = colorButtonBackground,
+                    colorBackground = colorBackground,
+                    alphaBackground = alphaBackground,
+                    colorFocusArea = colorFocusArea,
+                    cxFocusArea = circleCenterX,
+                    cyFocusArea = circleCenterY,
+                    radiusFocusArea = circleCenterRadius,
+                    rect = rect,
+                    type = type,
+                    gradientFocusEnabled = gradientFocusEnabled
             )
 
         }
@@ -270,10 +277,10 @@ class ShowcaseManager private constructor(private val builder: Builder) {
         private fun calculateRect(marginFocusArea: Int, viewPositionRect: Rect): Rect {
             val margin = ShowcaseUtils.convertDpToPx(marginFocusArea.toFloat())
             return Rect(
-                (viewPositionRect.left - margin).toInt(),
-                (viewPositionRect.top - margin).toInt(),
-                (viewPositionRect.right + margin).toInt(),
-                (viewPositionRect.bottom + margin).toInt()
+                    (viewPositionRect.left - margin).toInt(),
+                    (viewPositionRect.top - margin).toInt(),
+                    (viewPositionRect.right + margin).toInt(),
+                    (viewPositionRect.bottom + margin).toInt()
             )
         }
     }

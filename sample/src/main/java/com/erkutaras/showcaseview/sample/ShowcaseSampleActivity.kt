@@ -128,6 +128,7 @@ class ShowcaseSampleActivity : AppCompatActivity() {
             .descriptionTitle("LOREM IPSUM DOLOR-1")
             .descriptionText("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.")
             .buttonText("Done")
+            .buttonVisibility(false)//To hide button
             .add()
             // second view
             .view(v1)
@@ -136,6 +137,7 @@ class ShowcaseSampleActivity : AppCompatActivity() {
             .descriptionText("Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.")
             .buttonText("Cancel")
             .marginFocusArea(20)
+            .buttonVisibility(true)//To show button
             .add()
             .build()
             .show()
