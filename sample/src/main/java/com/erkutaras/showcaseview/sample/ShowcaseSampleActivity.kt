@@ -129,6 +129,8 @@ class ShowcaseSampleActivity : AppCompatActivity() {
             .descriptionText("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.")
             .buttonText("Done")
             .buttonVisibility(false)//To hide button
+            .cancelButtonVisibility(false)//To hide cancel button
+            .moveButtonsVisibility(true)
             .add()
             // second view
             .view(v1)
@@ -138,6 +140,8 @@ class ShowcaseSampleActivity : AppCompatActivity() {
             .buttonText("Cancel")
             .marginFocusArea(20)
             .buttonVisibility(true)//To show button
+            .cancelButtonVisibility(true)//To show cancel button
+            .moveButtonsVisibility(true)
             .add()
             .build()
             .show()

@@ -1,9 +1,14 @@
 package com.erkutaras.showcaseview
 
 import android.graphics.Rect
+import android.opengl.Visibility
+import android.os.Parcel
 import android.os.Parcelable
+import android.view.View
 import androidx.annotation.DrawableRes
+import kotlinx.android.parcel.Parceler
 import kotlinx.android.parcel.Parcelize
+import kotlinx.android.parcel.RawValue
 
 /**
  * Created by erkutaras on 25.02.2018.
@@ -15,6 +20,8 @@ class ShowcaseModel(
     val descriptionText: String? = null,
     val buttonText: String? = null,
     val buttonVisibility: Boolean = true,
+    val moveButtonsVisibility: Boolean = false,
+    val cancelButtonVisibility : Boolean = true,
     val colorDescTitle: Int = 0,
     val colorDescText: Int = 0,
     val colorButtonText: Int = 0,

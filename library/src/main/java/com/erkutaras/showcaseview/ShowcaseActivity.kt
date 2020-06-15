@@ -65,7 +65,7 @@ class ShowcaseActivity : AppCompatActivity(), OnIndexChangedListener {
         initView()
 
         //To hide or show buttons
-        hideAndShowButtonsContainer()
+        //hideAndShowButtonsContainer()
 
         //To send a call back of the currentIndex
         updateCurrentIndex()
@@ -87,7 +87,7 @@ class ShowcaseActivity : AppCompatActivity(), OnIndexChangedListener {
      * To handle on layout clicked
      * */
     private fun onLayoutClicked() {
-        layout.setOnExitClickListener(View.OnClickListener { finishActivity() })
+        layout.setOnCancelClickListener(View.OnClickListener { finishActivity() })
 
         layout.setOnNextClickListener(View.OnClickListener { showNextLayout() })
 

@@ -91,6 +91,8 @@ class ShowcaseManager private constructor(private val builder: Builder) {
         internal lateinit var descriptionText: String
         private lateinit var buttonText: String
         private var buttonVisibility: Boolean = true
+        private var moveButtonsVisibility: Boolean = false
+        private var cancelButtonVisibility: Boolean = true
         private var colorDescTitle: Int = 0
         private var colorDescText: Int = 0
         private var colorButtonText: Int = 0
@@ -144,6 +146,16 @@ class ShowcaseManager private constructor(private val builder: Builder) {
 
         fun buttonVisibility(buttonVisibility: Boolean): Builder {
             this.buttonVisibility = buttonVisibility
+            return this
+        }
+
+        fun moveButtonsVisibility(moveButtonsVisibility: Boolean): Builder {
+            this.moveButtonsVisibility = moveButtonsVisibility
+            return this
+        }
+
+        fun cancelButtonVisibility(cancelButtonVisibility: Boolean): Builder {
+            this.cancelButtonVisibility = cancelButtonVisibility
             return this
         }
 
@@ -239,6 +251,8 @@ class ShowcaseManager private constructor(private val builder: Builder) {
                     descriptionText = descriptionText,
                     buttonText = buttonText,
                     buttonVisibility = buttonVisibility,
+                    moveButtonsVisibility = moveButtonsVisibility,
+                    cancelButtonVisibility = cancelButtonVisibility,
                     colorDescTitle = colorDescTitle,
                     colorDescText = colorDescText,
                     colorButtonText = colorButtonText,

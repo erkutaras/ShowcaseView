@@ -8,6 +8,7 @@ import android.util.AttributeSet
 import android.util.Log
 import android.view.View
 import android.widget.*
+import androidx.constraintlayout.widget.ConstraintLayout
 
 /**
  * Created by erkut.aras on 23.02.2018.
@@ -20,6 +21,9 @@ open class ShowcaseView : RelativeLayout {
     private val descriptionView: View =
         View.inflate(context, R.layout.layout_intro_description, null)
     private var onClickListener: OnClickListener? = null
+    private var onCancelClickListener: OnClickListener? = null
+    private var onNextClickListener: OnClickListener? = null
+    private var onPreviousClickListener: OnClickListener? = null
 
     // updatable fields for focused area
     private var colorBackground: Int = 0
@@ -69,6 +73,8 @@ open class ShowcaseView : RelativeLayout {
         val descriptionTitle = showcaseModel.descriptionTitle
         val descriptionText = showcaseModel.descriptionText
         val buttonVisibility : Boolean = showcaseModel.buttonVisibility
+        val moveButtonsVisibility : Boolean = showcaseModel.moveButtonsVisibility
+        val cancelButtonVisibility : Boolean = showcaseModel.cancelButtonVisibility
         val buttonText = showcaseModel.buttonText
         val colorDescTitle = showcaseModel.colorDescTitle
         val colorDescText = showcaseModel.colorDescText
@@ -103,7 +109,17 @@ open class ShowcaseView : RelativeLayout {
             button.text = buttonText
         }
 
+        //visibility of custom button
         button.visibility = if(buttonVisibility){
+            View.VISIBLE
+        }else{
+            View.GONE
+        }
+
+
+        //visibility of next and previous buttons
+        val buttonsContainer = descriptionView.findViewById<ConstraintLayout>(R.id.button_container)
+        buttonsContainer.visibility = if(moveButtonsVisibility){
             View.VISIBLE
         }else{
             View.GONE
@@ -120,9 +136,14 @@ open class ShowcaseView : RelativeLayout {
         }
 
         //imgBtn cancel
-        val imgBtnExist = descriptionView.findViewById<ImageButton>(R.id.img_cancel)
-        if (ShowcaseUtils.isNonNull(onExitClickListener)){
-            imgBtnExist.setOnClickListener(onExitClickListener)
+        val imgBtnCancel = descriptionView.findViewById<ImageButton>(R.id.img_cancel)
+        if (ShowcaseUtils.isNonNull(onCancelClickListener)){
+            imgBtnCancel.setOnClickListener(onCancelClickListener)
+        }
+        imgBtnCancel.visibility = if(cancelButtonVisibility){
+            View.VISIBLE
+        }else{
+            View.GONE
         }
 
         //imgBtn next
@@ -130,6 +151,8 @@ open class ShowcaseView : RelativeLayout {
         if (ShowcaseUtils.isNonNull(onNextClickListener)){
             imgBtnNext.setOnClickListener(onNextClickListener)
         }
+
+
 
         //imgBtn previous
         val imgBtnPrevious = descriptionView.findViewById<ImageButton>(R.id.img_previous)
@@ -160,17 +183,14 @@ open class ShowcaseView : RelativeLayout {
         this.onClickListener = onClickListener
     }
 
-    private var onExitClickListener: OnClickListener? = null
-    fun setOnExitClickListener(onClickListener: OnClickListener?) {
-        this.onExitClickListener = onClickListener
+    fun setOnCancelClickListener(onClickListener: OnClickListener?) {
+        this.onCancelClickListener = onClickListener
     }
 
-    private var onNextClickListener: OnClickListener? = null
     fun setOnNextClickListener(onClickListener: OnClickListener?) {
         this.onNextClickListener = onClickListener
     }
 
-    private var onPreviousClickListener: OnClickListener? = null
     fun setOnPreviousClickListener(onClickListener: OnClickListener?) {
         this.onPreviousClickListener = onClickListener
     }
