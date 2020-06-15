@@ -3,7 +3,6 @@ package com.erkutaras.showcaseview
 import android.app.Activity
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.ImageButton
 import androidx.appcompat.app.AppCompatActivity
@@ -68,14 +67,11 @@ class ShowcaseActivity : AppCompatActivity(), OnIndexChangedListener {
         //To hide or show buttons
         hideAndShowButtonsContainer()
 
-        //To handle when views clicked
-        onViewsClicked()
-
         //To send a call back of the currentIndex
         updateCurrentIndex()
     }
 
-    private  val TAG = "ShowcaseActivity"
+
     /**
      * To initialize views
      * */
@@ -86,47 +82,42 @@ class ShowcaseActivity : AppCompatActivity(), OnIndexChangedListener {
         imgCancel = findViewById(R.id.img_cancel)
     }
 
-    /**
-     * To handle onViews clicked
-     * */
-    private fun onViewsClicked() {
-        imgCancel.setOnClickListener {
-            finishActivity()
-        }
-
-        imgNext.setOnClickListener {
-            currentIndex += 1
-            if (isIndexInRange(currentIndex)) {
-                updateCurrentIndex()//send the call back
-                updateView()
-            } else {
-                finishActivity()
-            }
-        }
-
-        imgPrevious.setOnClickListener {
-            if (isNotFirstItem(currentIndex)) {
-                currentIndex -= 1
-                updateCurrentIndex()//send the call back
-                updateView()
-            }
-        }
-
-    }
 
     /**
      * To handle on layout clicked
      * */
-    private fun onLayoutClicked(){
-        layout.setOnClickListener {
-            Log.e(TAG, "onClick" )
-            currentIndex += 1
-            if (currentIndex < showcaseModels.size) {
-                updateView()
-                updateCurrentIndex()//send the call back
-            } else {
-                finishActivity()
-            }
+    private fun onLayoutClicked() {
+        layout.setOnExitClickListener(View.OnClickListener { finishActivity() })
+
+        layout.setOnNextClickListener(View.OnClickListener { showNextLayout() })
+
+        layout.setOnPreviousClickListener(View.OnClickListener { showPreviousLayout() })
+
+        layout.setOnClickListener { showNextLayout() }
+    }
+
+
+    /**
+     * To show next layout
+     * */
+    private fun showNextLayout() {
+        currentIndex += 1
+        if (isIndexInRange(currentIndex)) {
+            updateCurrentIndex()//send the call back
+            updateView()
+        } else {
+            finishActivity()
+        }
+    }
+
+    /**
+     * To show previous layout
+     * */
+    private fun showPreviousLayout() {
+        if (isNotFirstItem(currentIndex)) {
+            currentIndex -= 1
+            updateCurrentIndex()//send the call back
+            updateView()
         }
     }
 
@@ -192,10 +183,6 @@ class ShowcaseActivity : AppCompatActivity(), OnIndexChangedListener {
         imgNext.isSelected = (index + 1) < showcaseModels.size //At the last item imgNext.isSelected = false
     }
 
-
-
-
-    
 
     override fun onResume() {
         super.onResume()

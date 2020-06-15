@@ -7,10 +7,7 @@ import androidx.annotation.RequiresApi
 import android.util.AttributeSet
 import android.util.Log
 import android.view.View
-import android.widget.Button
-import android.widget.ImageView
-import android.widget.RelativeLayout
-import android.widget.TextView
+import android.widget.*
 
 /**
  * Created by erkut.aras on 23.02.2018.
@@ -100,6 +97,7 @@ open class ShowcaseView : RelativeLayout {
             textViewText.setTextColor(colorDescText)
         }
 
+        //btn custom button
         val button = descriptionView.findViewById<Button>(R.id.button_done)
         if (buttonText?.isNotEmpty() == true) {
             button.text = buttonText
@@ -120,6 +118,25 @@ open class ShowcaseView : RelativeLayout {
         if (ShowcaseUtils.isNonNull(onClickListener)) {
             button.setOnClickListener(onClickListener)
         }
+
+        //imgBtn cancel
+        val imgBtnExist = descriptionView.findViewById<ImageButton>(R.id.img_cancel)
+        if (ShowcaseUtils.isNonNull(onExitClickListener)){
+            imgBtnExist.setOnClickListener(onExitClickListener)
+        }
+
+        //imgBtn next
+        val imgBtnNext = descriptionView.findViewById<ImageButton>(R.id.img_next)
+        if (ShowcaseUtils.isNonNull(onNextClickListener)){
+            imgBtnNext.setOnClickListener(onNextClickListener)
+        }
+
+        //imgBtn previous
+        val imgBtnPrevious = descriptionView.findViewById<ImageButton>(R.id.img_previous)
+        if (ShowcaseUtils.isNonNull(onPreviousClickListener)){
+            imgBtnPrevious.setOnClickListener(onPreviousClickListener)
+        }
+
 
         // update custom view
         if (ShowcaseUtils.isNotZero(showcaseModel.colorBackground.toFloat())) {
@@ -142,6 +159,22 @@ open class ShowcaseView : RelativeLayout {
     override fun setOnClickListener(onClickListener: OnClickListener?) {
         this.onClickListener = onClickListener
     }
+
+    private var onExitClickListener: OnClickListener? = null
+    fun setOnExitClickListener(onClickListener: OnClickListener?) {
+        this.onExitClickListener = onClickListener
+    }
+
+    private var onNextClickListener: OnClickListener? = null
+    fun setOnNextClickListener(onClickListener: OnClickListener?) {
+        this.onNextClickListener = onClickListener
+    }
+
+    private var onPreviousClickListener: OnClickListener? = null
+    fun setOnPreviousClickListener(onClickListener: OnClickListener?) {
+        this.onPreviousClickListener = onClickListener
+    }
+
 
     @RequiresApi(api = Build.VERSION_CODES.HONEYCOMB)
     override fun dispatchDraw(canvas: Canvas) {
