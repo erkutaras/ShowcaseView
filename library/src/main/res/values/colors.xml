@@ -6,4 +6,5 @@
     <color name="intro_button_text">#ffffff</color>
     <color name="white">#ffffff</color>
     <color name="fade_white">#75FFFFFF</color>
+    <color name="red">#75F40404</color>
 </resources>

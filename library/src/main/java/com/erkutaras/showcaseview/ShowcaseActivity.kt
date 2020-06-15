@@ -23,11 +23,6 @@ class ShowcaseActivity : AppCompatActivity(), OnIndexChangedListener {
     //MainView
     private lateinit var layout: ShowcaseView
 
-    //Views
-    private lateinit var buttonsContainer: ConstraintLayout
-    private lateinit var imgNext: ImageButton
-    private lateinit var imgPrevious: ImageButton
-    private lateinit var imgCancel: ImageButton
 
     //OnIndexChangedListener
     private lateinit var onIndexChangedListener: OnIndexChangedListener
@@ -58,30 +53,9 @@ class ShowcaseActivity : AppCompatActivity(), OnIndexChangedListener {
         //To handle on layout clicked
         onLayoutClicked()
 
-        //To update the layout
-        updateView()
-
-        //To initialize views
-        initView()
-
-        //To hide or show buttons
-        //hideAndShowButtonsContainer()
-
         //To send a call back of the currentIndex
         updateCurrentIndex()
     }
-
-
-    /**
-     * To initialize views
-     * */
-    private fun initView() {
-        buttonsContainer = findViewById(R.id.button_container)
-        imgNext = findViewById(R.id.img_next)
-        imgPrevious = findViewById(R.id.img_previous)
-        imgCancel = findViewById(R.id.img_cancel)
-    }
-
 
     /**
      * To handle on layout clicked
@@ -93,9 +67,34 @@ class ShowcaseActivity : AppCompatActivity(), OnIndexChangedListener {
 
         layout.setOnPreviousClickListener(View.OnClickListener { showPreviousLayout() })
 
-        layout.setOnClickListener { showNextLayout() }
+        layout.setOnCustomButtonClickListener(View.OnClickListener { showNextLayout() })
     }
 
+
+
+    /**
+     * To initialize OnIndexChangedListener
+     * */
+    private fun initOnIndexChangedListener() {
+        onIndexChangedListener = this
+    }
+
+    /**
+     * To update the ui with the next view
+     * */
+    private fun updateView(isBntNextSelected: Boolean, isBntPreviousSelected: Boolean) {
+        val currentShowModel = showcaseModels[currentIndex];
+        currentShowModel.isBtnNextSelected = isBntNextSelected
+        currentShowModel.isBtnPreviousSelected = isBntPreviousSelected
+        layout.updateView(currentShowModel)
+    }
+
+    /**
+     * To send a call of the index
+     * */
+    private fun updateCurrentIndex() {
+        onIndexChangedListener.onChanged(currentIndex)
+    }
 
     /**
      * To show next layout
@@ -104,7 +103,6 @@ class ShowcaseActivity : AppCompatActivity(), OnIndexChangedListener {
         currentIndex += 1
         if (isIndexInRange(currentIndex)) {
             updateCurrentIndex()//send the call back
-            updateView()
         } else {
             finishActivity()
         }
@@ -117,41 +115,12 @@ class ShowcaseActivity : AppCompatActivity(), OnIndexChangedListener {
         if (isNotFirstItem(currentIndex)) {
             currentIndex -= 1
             updateCurrentIndex()//send the call back
-            updateView()
+        }else{
+            finishActivity()
         }
     }
 
-    /**
-     * To initialize OnIndexChangedListener
-     * */
-    private fun initOnIndexChangedListener() {
-        onIndexChangedListener = this
-    }
 
-    /**
-     * To update the ui with the next view
-     * */
-    private fun updateView() {
-        layout.updateView(showcaseModels[currentIndex])
-    }
-
-    /**
-     * To send a call of the index
-     * */
-    private fun updateCurrentIndex() {
-        onIndexChangedListener.onChanged(currentIndex)
-    }
-
-    /**
-     * To hide the buttons of next and previous if the showcaseModels.size is one item
-     * */
-    private fun hideAndShowButtonsContainer() {
-        buttonsContainer.visibility = if (showcaseModels.size == 1) {
-            View.GONE
-        } else {
-            View.VISIBLE
-        }
-    }
 
     /**
      * @return true if index is in of range showcaseModels list
@@ -179,8 +148,9 @@ class ShowcaseActivity : AppCompatActivity(), OnIndexChangedListener {
      * call back of {@OnIndexChangedListener}
      * */
     override fun onChanged(index: Int) {
-        imgPrevious.isSelected = (index != 0) //At the first item imgPrevious.isSelected = false
-        imgNext.isSelected = (index + 1) < showcaseModels.size //At the last item imgNext.isSelected = false
+        val isBtnPreviousSelected = (index != 0) //At the first item imgPrevious.isSelected = false
+        val isBtnNextSelected = (index + 1) < showcaseModels.size//At the last item imgNext.isSelected = false
+        updateView(isBtnNextSelected, isBtnPreviousSelected)
     }
 
 

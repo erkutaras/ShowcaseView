@@ -3,6 +3,7 @@ package com.erkutaras.showcaseview
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.graphics.Color
 import android.graphics.Rect
 import android.os.Build
 import android.os.Parcelable
@@ -93,6 +94,7 @@ class ShowcaseManager private constructor(private val builder: Builder) {
         private var buttonVisibility: Boolean = true
         private var moveButtonsVisibility: Boolean = false
         private var cancelButtonVisibility: Boolean = true
+        private var cancelButtonColor: Int =  0
         private var colorDescTitle: Int = 0
         private var colorDescText: Int = 0
         private var colorButtonText: Int = 0
@@ -220,6 +222,12 @@ class ShowcaseManager private constructor(private val builder: Builder) {
             return this
         }
 
+        @RequiresApi(Build.VERSION_CODES.M)
+        fun cancelButtonColor(color: Int): Builder {
+            this.cancelButtonColor = color
+            return this
+        }
+
         fun gradientFocusEnabled(enabled: Boolean): Builder {
             this.gradientFocusEnabled = enabled
             return this
@@ -253,6 +261,7 @@ class ShowcaseManager private constructor(private val builder: Builder) {
                     buttonVisibility = buttonVisibility,
                     moveButtonsVisibility = moveButtonsVisibility,
                     cancelButtonVisibility = cancelButtonVisibility,
+                    cancelButtonColor = cancelButtonColor,
                     colorDescTitle = colorDescTitle,
                     colorDescText = colorDescText,
                     colorButtonText = colorButtonText,
@@ -269,6 +278,7 @@ class ShowcaseManager private constructor(private val builder: Builder) {
             )
 
         }
+
 
         private fun getCircleCenterX(viewPositionRect: Rect): Int {
             return viewPositionRect.left + view.width / 2
