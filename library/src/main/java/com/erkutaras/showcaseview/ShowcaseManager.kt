@@ -3,7 +3,6 @@ package com.erkutaras.showcaseview
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
-import android.graphics.Color
 import android.graphics.Rect
 import android.os.Build
 import android.os.Parcelable
@@ -95,6 +94,8 @@ class ShowcaseManager private constructor(private val builder: Builder) {
         private var moveButtonsVisibility: Boolean = false
         private var cancelButtonVisibility: Boolean = true
         private var cancelButtonColor: Int =  0
+        private var selectedMoveButtonColor: Int =  0
+        private var unSelectedMoveButtonColor: Int =  0
         private var colorDescTitle: Int = 0
         private var colorDescText: Int = 0
         private var colorButtonText: Int = 0
@@ -228,6 +229,18 @@ class ShowcaseManager private constructor(private val builder: Builder) {
             return this
         }
 
+        @RequiresApi(Build.VERSION_CODES.M)
+        fun selectedMoveButtonColor(color: Int): Builder {
+            this.selectedMoveButtonColor = color
+            return this
+        }
+
+        @RequiresApi(Build.VERSION_CODES.M)
+        fun unSelectedMoveButtonColor(color: Int): Builder {
+            this.unSelectedMoveButtonColor = color
+            return this
+        }
+
         fun gradientFocusEnabled(enabled: Boolean): Builder {
             this.gradientFocusEnabled = enabled
             return this
@@ -262,6 +275,8 @@ class ShowcaseManager private constructor(private val builder: Builder) {
                     moveButtonsVisibility = moveButtonsVisibility,
                     cancelButtonVisibility = cancelButtonVisibility,
                     cancelButtonColor = cancelButtonColor,
+                    selectedMoveButtonColor = selectedMoveButtonColor,
+                    unSelectedMoveButtonColor = unSelectedMoveButtonColor,
                     colorDescTitle = colorDescTitle,
                     colorDescText = colorDescText,
                     colorButtonText = colorButtonText,
@@ -278,7 +293,6 @@ class ShowcaseManager private constructor(private val builder: Builder) {
             )
 
         }
-
 
         private fun getCircleCenterX(viewPositionRect: Rect): Int {
             return viewPositionRect.left + view.width / 2
@@ -311,8 +325,7 @@ class ShowcaseManager private constructor(private val builder: Builder) {
 
     companion object {
 
-        @JvmField
-        val REQUEST_CODE_SHOWCASE = 7032
-        private val TAG = "ShowcaseManager"
+        const val REQUEST_CODE_SHOWCASE = 7032
+        private const val TAG = "ShowcaseManager"
     }
 }

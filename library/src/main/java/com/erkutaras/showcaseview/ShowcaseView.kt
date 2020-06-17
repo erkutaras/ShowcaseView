@@ -78,6 +78,8 @@ open class ShowcaseView : RelativeLayout {
         val buttonText = showcaseModel.buttonText
         val colorDescTitle = showcaseModel.colorDescTitle
         val cancelBtnColor = showcaseModel.cancelButtonColor
+        val selectedMoveButtonColor = showcaseModel.selectedMoveButtonColor
+        val unSelectedMoveButtonColor = showcaseModel.unSelectedMoveButtonColor
         val colorDescText = showcaseModel.colorDescText
         val colorButtonText = showcaseModel.colorButtonText
         val colorButtonBackground = showcaseModel.colorButtonBackground
@@ -100,10 +102,10 @@ open class ShowcaseView : RelativeLayout {
         updateNextPreviousButtonsContainer(moveButtonsVisibility)
 
         //To update next button
-        updateNextButton(isBtnNextSelected)
+        updateNextButton(isBtnNextSelected,selectedMoveButtonColor,unSelectedMoveButtonColor)
 
         //To update previous button
-        updatePreviousButton(isBtnPreviousSelected)
+        updatePreviousButton(isBtnPreviousSelected,selectedMoveButtonColor,unSelectedMoveButtonColor)
 
 
         // update custom view
@@ -264,7 +266,8 @@ open class ShowcaseView : RelativeLayout {
      * Add on click listener to next button
      * Set the selection of button next
      * */
-    private fun updateNextButton(isBtnNextSelected : Boolean){
+    private fun updateNextButton(isBtnNextSelected : Boolean,selectedMoveButtonColor:Int,
+                                 unSelectedMoveButtonColor:Int){
         //Initialize imgBtn next
         val imgBtnNext = descriptionView.findViewById<ImageButton>(R.id.img_next)
 
@@ -272,9 +275,40 @@ open class ShowcaseView : RelativeLayout {
         if (ShowcaseUtils.isNonNull(onNextClickListener)) {
             imgBtnNext.setOnClickListener(onNextClickListener)
         }
-
         //set the selection of button next
-        imgBtnNext.isSelected = isBtnNextSelected
+        if(isBtnNextSelected){
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                if (ShowcaseUtils.isNotZero(selectedMoveButtonColor.toFloat())) {
+                    resources.getDrawable(R.drawable.ic_next_arrow, null).setTint(selectedMoveButtonColor)
+                    resources.getDrawable(R.drawable.rect_background,null).setTint(selectedMoveButtonColor)
+
+                } else {
+                    resources.getDrawable(R.drawable.rect_background,null).setTint(Color.WHITE)
+                    imgBtnNext.setImageResource(R.drawable.selector_next_arrow)
+                    imgBtnNext.setBackgroundResource(R.drawable.rect_background)
+
+                }
+            }
+            imgBtnNext.setImageResource(R.drawable.ic_next_arrow)
+            imgBtnNext.setBackgroundResource(R.drawable.rect_background)
+
+        }else{
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                if (ShowcaseUtils.isNotZero(unSelectedMoveButtonColor.toFloat())) {
+                    resources.getDrawable(R.drawable.ic_next_arrow_fade, null).setTint(unSelectedMoveButtonColor)
+                    resources.getDrawable(R.drawable.unselected_rect,null).setTint(unSelectedMoveButtonColor)
+                } else {
+                    resources.getDrawable(R.drawable.unselected_rect,null).setTint(resources.getColor(R.color.fade_white,null))
+                    imgBtnNext.setImageResource(R.drawable.selector_next_arrow)
+                    imgBtnNext.setBackgroundResource(R.drawable.unselected_rect)
+                }
+            }
+
+            imgBtnNext.setImageResource(R.drawable.ic_next_arrow_fade)
+            imgBtnNext.setBackgroundResource(R.drawable.unselected_rect)
+        }
+
+
     }
 
     /**
@@ -283,7 +317,8 @@ open class ShowcaseView : RelativeLayout {
      * Add on click listener to previous button
      * Set the selection of previous next
      * */
-    private fun updatePreviousButton(isBtnPreviousSelected : Boolean){
+    private fun updatePreviousButton(isBtnPreviousSelected : Boolean,selectedMoveButtonColor:Int,
+                                     unSelectedMoveButtonColor:Int){
         //Initialize imgBtn previous
         val imgBtnPrevious = descriptionView.findViewById<ImageButton>(R.id.img_previous)
 
@@ -292,8 +327,41 @@ open class ShowcaseView : RelativeLayout {
             imgBtnPrevious.setOnClickListener(onPreviousClickListener)
         }
 
+
         //set the selection of button previous
-        imgBtnPrevious.isSelected = isBtnPreviousSelected
+        if(isBtnPreviousSelected){
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                if (ShowcaseUtils.isNotZero(selectedMoveButtonColor.toFloat())) {
+                    resources.getDrawable(R.drawable.ic_previous_arrow, null).setTint(selectedMoveButtonColor)
+                    resources.getDrawable(R.drawable.rect_background,null).setTint(selectedMoveButtonColor)
+
+                } else {
+                    resources.getDrawable(R.drawable.rect_background,null).setTint(Color.WHITE)
+                    imgBtnPrevious.setImageResource(R.drawable.selector_previous_arrow)
+                    imgBtnPrevious.setBackgroundResource(R.drawable.rect_background)
+
+                }
+            }
+            imgBtnPrevious.setImageResource(R.drawable.ic_previous_arrow)
+            imgBtnPrevious.setBackgroundResource(R.drawable.rect_background)
+
+        }else{
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                if (ShowcaseUtils.isNotZero(unSelectedMoveButtonColor.toFloat())) {
+                    resources.getDrawable(R.drawable.ic_previous_arrow_fade, null).setTint(unSelectedMoveButtonColor)
+                    resources.getDrawable(R.drawable.unselected_rect,null).setTint(unSelectedMoveButtonColor)
+                } else {
+                    resources.getDrawable(R.drawable.unselected_rect,null).setTint(resources.getColor(R.color.fade_white,null))
+                    imgBtnPrevious.setImageResource(R.drawable.selector_previous_arrow)
+                    imgBtnPrevious.setBackgroundResource(R.drawable.unselected_rect)
+                }
+
+            }
+
+            imgBtnPrevious.setImageResource(R.drawable.ic_previous_arrow_fade)
+            imgBtnPrevious.setBackgroundResource(R.drawable.unselected_rect)
+        }
+
     }
 
 
