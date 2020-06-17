@@ -142,7 +142,7 @@ class ShowcaseSampleActivity : AppCompatActivity() {
                 .buttonText("Cancel")
                 .marginFocusArea(20)
                 .cancelButtonColor(Color.GREEN)
-                .selectedMoveButtonColor(R.color.colorAccent)
+                .selectedMoveButtonColor(Color.GREEN)
                 .unSelectedMoveButtonColor(Color.RED)
                 .buttonVisibility(true)//To show button
                 .cancelButtonVisibility(true)//To show cancel button
