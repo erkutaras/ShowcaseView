@@ -22,10 +22,10 @@ class ShowcaseModel(
     val buttonText: String? = null,
     val buttonVisibility: Boolean = true,
     val moveButtonsVisibility: Boolean = false,
-    val cancelButtonVisibility : Boolean = true,
-    val cancelButtonColor: Int =  0,
-    val selectedMoveButtonColor: Int =  0,
-    val unSelectedMoveButtonColor: Int =  0,
+    val cancelButtonVisibility: Boolean = true,
+    val cancelButtonColor: Int = 0,
+    val selectedMoveButtonColor: Int = 0,
+    val unSelectedMoveButtonColor: Int = 0,
     val colorDescTitle: Int = 0,
     val colorDescText: Int = 0,
     val colorButtonText: Int = 0,
@@ -39,9 +39,10 @@ class ShowcaseModel(
     val rect: Rect? = null,
     val type: ShowcaseType = ShowcaseType.CIRCLE,
     val gradientFocusEnabled: Boolean = false
-) : Parcelable{
+) : Parcelable {
     @IgnoredOnParcel
     var isBtnNextSelected: Boolean = false
+
     @IgnoredOnParcel
     var isBtnPreviousSelected: Boolean = false
 }

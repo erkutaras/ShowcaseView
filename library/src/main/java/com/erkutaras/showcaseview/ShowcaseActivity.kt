@@ -4,7 +4,6 @@ import android.app.Activity
 import android.os.Build
 import android.os.Bundle
 import android.view.View
-import android.widget.ImageButton
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 
@@ -32,14 +31,13 @@ class ShowcaseActivity : AppCompatActivity(), OnIndexChangedListener {
         super.onCreate(savedInstanceState)
 
         val extras = intent.extras ?: throw NullPointerException("Extras can not be null. " +
-                "To pass the extras, you need to pass mandatory parameters to ShowcaseManager.")
+            "To pass the extras, you need to pass mandatory parameters to ShowcaseManager.")
         showcaseModels = extras.getParcelableArrayList<ShowcaseModel>(EXTRAS_SHOWCASES) as ArrayList<ShowcaseModel>
 
         if (showcaseModels.isEmpty()) {
             finish()
             return
         }
-
 
         //To initialize OnIndexChangedListener
         initOnIndexChangedListener()
@@ -61,15 +59,13 @@ class ShowcaseActivity : AppCompatActivity(), OnIndexChangedListener {
      * To handle on layout clicked
      * */
     private fun onLayoutClicked() {
-        layout.setOnCancelClickListener(View.OnClickListener { finishActivity() })
-
-        layout.setOnNextClickListener(View.OnClickListener { showNextLayout() })
-
-        layout.setOnPreviousClickListener(View.OnClickListener { showPreviousLayout() })
-
-        layout.setOnCustomButtonClickListener(View.OnClickListener { showNextLayout() })
+        with(layout) {
+            setOnCancelClickListener(View.OnClickListener { finishActivity() })
+            setOnNextClickListener(View.OnClickListener { showNextLayout() })
+            setOnPreviousClickListener(View.OnClickListener { showPreviousLayout() })
+            setOnCustomButtonClickListener(View.OnClickListener { showNextLayout() })
+        }
     }
-
 
 
     /**
@@ -115,12 +111,10 @@ class ShowcaseActivity : AppCompatActivity(), OnIndexChangedListener {
         if (isNotFirstItem(currentIndex)) {
             currentIndex -= 1
             updateCurrentIndex()//send the call back
-        }else{
+        } else {
             finishActivity()
         }
     }
-
-
 
     /**
      * @return true if index is in of range showcaseModels list
@@ -153,7 +147,6 @@ class ShowcaseActivity : AppCompatActivity(), OnIndexChangedListener {
         updateView(isBtnNextSelected, isBtnPreviousSelected)
     }
 
-
     override fun onResume() {
         super.onResume()
         val extras = intent.extras
@@ -168,7 +161,7 @@ class ShowcaseActivity : AppCompatActivity(), OnIndexChangedListener {
     }
 
     private fun isSystemUIVisibilityFalse(extras: Bundle?) =
-            extras == null || extras.getBoolean(EXTRAS_SYSTEM_UI_VISIBILITY, false).not()
+        extras == null || extras.getBoolean(EXTRAS_SYSTEM_UI_VISIBILITY, false).not()
 
     companion object {
         const val EXTRAS_SHOWCASES = "EXTRAS_SHOWCASES"

@@ -93,9 +93,9 @@ class ShowcaseManager private constructor(private val builder: Builder) {
         private var buttonVisibility: Boolean = true
         private var moveButtonsVisibility: Boolean = false
         private var cancelButtonVisibility: Boolean = true
-        private var cancelButtonColor: Int =  0
-        private var selectedMoveButtonColor: Int =  0
-        private var unSelectedMoveButtonColor: Int =  0
+        private var cancelButtonColor: Int = 0
+        private var selectedMoveButtonColor: Int = 0
+        private var unSelectedMoveButtonColor: Int = 0
         private var colorDescTitle: Int = 0
         private var colorDescText: Int = 0
         private var colorButtonText: Int = 0
@@ -267,29 +267,29 @@ class ShowcaseManager private constructor(private val builder: Builder) {
             val rect = calculateRect(marginFocusArea, viewPositionRect)
 
             return ShowcaseModel(
-                    descriptionImageRes = descriptionImageRes,
-                    descriptionTitle = descriptionTitle,
-                    descriptionText = descriptionText,
-                    buttonText = buttonText,
-                    buttonVisibility = buttonVisibility,
-                    moveButtonsVisibility = moveButtonsVisibility,
-                    cancelButtonVisibility = cancelButtonVisibility,
-                    cancelButtonColor = cancelButtonColor,
-                    selectedMoveButtonColor = selectedMoveButtonColor,
-                    unSelectedMoveButtonColor = unSelectedMoveButtonColor,
-                    colorDescTitle = colorDescTitle,
-                    colorDescText = colorDescText,
-                    colorButtonText = colorButtonText,
-                    colorButtonBackground = colorButtonBackground,
-                    colorBackground = colorBackground,
-                    alphaBackground = alphaBackground,
-                    colorFocusArea = colorFocusArea,
-                    cxFocusArea = circleCenterX,
-                    cyFocusArea = circleCenterY,
-                    radiusFocusArea = circleCenterRadius,
-                    rect = rect,
-                    type = type,
-                    gradientFocusEnabled = gradientFocusEnabled
+                descriptionImageRes = descriptionImageRes,
+                descriptionTitle = descriptionTitle,
+                descriptionText = descriptionText,
+                buttonText = buttonText,
+                buttonVisibility = buttonVisibility,
+                moveButtonsVisibility = moveButtonsVisibility,
+                cancelButtonVisibility = cancelButtonVisibility,
+                cancelButtonColor = cancelButtonColor,
+                selectedMoveButtonColor = selectedMoveButtonColor,
+                unSelectedMoveButtonColor = unSelectedMoveButtonColor,
+                colorDescTitle = colorDescTitle,
+                colorDescText = colorDescText,
+                colorButtonText = colorButtonText,
+                colorButtonBackground = colorButtonBackground,
+                colorBackground = colorBackground,
+                alphaBackground = alphaBackground,
+                colorFocusArea = colorFocusArea,
+                cxFocusArea = circleCenterX,
+                cyFocusArea = circleCenterY,
+                radiusFocusArea = circleCenterRadius,
+                rect = rect,
+                type = type,
+                gradientFocusEnabled = gradientFocusEnabled
             )
 
         }
@@ -315,10 +315,10 @@ class ShowcaseManager private constructor(private val builder: Builder) {
         private fun calculateRect(marginFocusArea: Int, viewPositionRect: Rect): Rect {
             val margin = ShowcaseUtils.convertDpToPx(marginFocusArea.toFloat())
             return Rect(
-                    (viewPositionRect.left - margin).toInt(),
-                    (viewPositionRect.top - margin).toInt(),
-                    (viewPositionRect.right + margin).toInt(),
-                    (viewPositionRect.bottom + margin).toInt()
+                (viewPositionRect.left - margin).toInt(),
+                (viewPositionRect.top - margin).toInt(),
+                (viewPositionRect.right + margin).toInt(),
+                (viewPositionRect.bottom + margin).toInt()
             )
         }
     }

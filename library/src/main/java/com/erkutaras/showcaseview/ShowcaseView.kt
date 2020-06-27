@@ -7,7 +7,11 @@ import androidx.annotation.RequiresApi
 import android.util.AttributeSet
 import android.util.Log
 import android.view.View
-import android.widget.*
+import android.widget.Button
+import android.widget.ImageView
+import android.widget.RelativeLayout
+import android.widget.TextView
+import android.widget.ImageButton
 import androidx.constraintlayout.widget.ConstraintLayout
 
 /**
@@ -19,7 +23,7 @@ open class ShowcaseView : RelativeLayout {
     private val FOCUS_AREA_BOTTOM_MARGIN_IN_DP = 20
 
     private val descriptionView: View =
-            View.inflate(context, R.layout.layout_intro_description, null)
+        View.inflate(context, R.layout.layout_intro_description, null)
     private var onCustomButtonClickListener: OnClickListener? = null
     private var onCancelClickListener: OnClickListener? = null
     private var onNextClickListener: OnClickListener? = null
@@ -90,22 +94,22 @@ open class ShowcaseView : RelativeLayout {
         updateImageDescription(descriptionImageRes)
 
         //update Title And Description
-        updateTitleAndDescription(descriptionTitle,colorDescTitle,descriptionText,colorDescText)
+        updateTitleAndDescription(descriptionTitle, colorDescTitle, descriptionText, colorDescText)
 
         //update custom button
-        updateCustomButton(buttonText,buttonVisibility,colorButtonText,colorButtonBackground)
+        updateCustomButton(buttonText, buttonVisibility, colorButtonText, colorButtonBackground)
 
         //To update cancel button
-        updateCancelButton(cancelButtonVisibility,cancelBtnColor)
+        updateCancelButton(cancelButtonVisibility, cancelBtnColor)
 
         //update the container of next and previous buttons
         updateNextPreviousButtonsContainer(moveButtonsVisibility)
 
         //To update next button
-        updateNextButton(isBtnNextSelected,selectedMoveButtonColor,unSelectedMoveButtonColor)
+        updateNextButton(isBtnNextSelected, selectedMoveButtonColor, unSelectedMoveButtonColor)
 
         //To update previous button
-        updatePreviousButton(isBtnPreviousSelected,selectedMoveButtonColor,unSelectedMoveButtonColor)
+        updatePreviousButton(isBtnPreviousSelected, selectedMoveButtonColor, unSelectedMoveButtonColor)
 
 
         // update custom view
@@ -132,8 +136,7 @@ open class ShowcaseView : RelativeLayout {
      * Set the text of title and description texts
      * Set the color of title and description texts
      * */
-    private fun updateTitleAndDescription(descriptionTitle :String?,colorDescTitle :Int
-                                          ,descriptionText :String?,colorDescText:Int){
+    private fun updateTitleAndDescription(descriptionTitle: String?, colorDescTitle: Int, descriptionText: String?, colorDescText: Int) {
         //Initialize title text
         val textViewTitle = descriptionView.findViewById<TextView>(R.id.textView_description_title)
 
@@ -157,7 +160,7 @@ open class ShowcaseView : RelativeLayout {
      * update ImageDescription
      * Set the visibility of the image
      * */
-    private fun updateImageDescription(descriptionImageRes : Int){
+    private fun updateImageDescription(descriptionImageRes: Int) {
         //Initialize ImageDescription
         val imageView = descriptionView.findViewById<ImageView>(R.id.imageView_description)
 
@@ -179,8 +182,8 @@ open class ShowcaseView : RelativeLayout {
      * Set the background color of custom button
      * Set visibility of custom button
      * */
-    private fun updateCustomButton(buttonText :String?, buttonVisibility:Boolean,
-                                  colorButtonText : Int, colorButtonBackground :Int){
+    private fun updateCustomButton(buttonText: String?, buttonVisibility: Boolean,
+                                   colorButtonText: Int, colorButtonBackground: Int) {
         //Initialize customButton cancel
         val button = descriptionView.findViewById<Button>(R.id.button_done)
 
@@ -217,7 +220,7 @@ open class ShowcaseView : RelativeLayout {
      * Add on click listener to cancel button
      * Set the tint color of cancel button
      * */
-    private fun updateCancelButton(cancelButtonVisibility :Boolean, cancelBtnColor : Int ){
+    private fun updateCancelButton(cancelButtonVisibility: Boolean, cancelBtnColor: Int) {
         //Initialize imgBtn cancel
         val imgBtnCancel = descriptionView.findViewById<ImageButton>(R.id.img_cancel)
 
@@ -248,7 +251,7 @@ open class ShowcaseView : RelativeLayout {
      * update the container of next and previous buttons
      * Set the visibility of the container
      * */
-    private fun updateNextPreviousButtonsContainer(moveButtonsVisibility :Boolean){
+    private fun updateNextPreviousButtonsContainer(moveButtonsVisibility: Boolean) {
         //Initialize the container
         val buttonsContainer = descriptionView.findViewById<ConstraintLayout>(R.id.button_container)
 
@@ -266,8 +269,8 @@ open class ShowcaseView : RelativeLayout {
      * Add on click listener to next button
      * Set the selection of button next
      * */
-    private fun updateNextButton(isBtnNextSelected : Boolean,selectedMoveButtonColor:Int,
-                                 unSelectedMoveButtonColor:Int){
+    private fun updateNextButton(isBtnNextSelected: Boolean, selectedMoveButtonColor: Int,
+                                 unSelectedMoveButtonColor: Int) {
         //Initialize imgBtn next
         val imgBtnNext = descriptionView.findViewById<ImageButton>(R.id.img_next)
 
@@ -276,14 +279,14 @@ open class ShowcaseView : RelativeLayout {
             imgBtnNext.setOnClickListener(onNextClickListener)
         }
         //set the selection of button next
-        if(isBtnNextSelected){
+        if (isBtnNextSelected) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 if (ShowcaseUtils.isNotZero(selectedMoveButtonColor.toFloat())) {
                     resources.getDrawable(R.drawable.ic_next_arrow, null).setTint(selectedMoveButtonColor)
-                    resources.getDrawable(R.drawable.rect_background,null).setTint(selectedMoveButtonColor)
+                    resources.getDrawable(R.drawable.rect_background, null).setTint(selectedMoveButtonColor)
 
                 } else {
-                    resources.getDrawable(R.drawable.rect_background,null).setTint(Color.WHITE)
+                    resources.getDrawable(R.drawable.rect_background, null).setTint(Color.WHITE)
                     imgBtnNext.setImageResource(R.drawable.selector_next_arrow)
                     imgBtnNext.setBackgroundResource(R.drawable.rect_background)
 
@@ -292,13 +295,13 @@ open class ShowcaseView : RelativeLayout {
             imgBtnNext.setImageResource(R.drawable.ic_next_arrow)
             imgBtnNext.setBackgroundResource(R.drawable.rect_background)
 
-        }else{
+        } else {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 if (ShowcaseUtils.isNotZero(unSelectedMoveButtonColor.toFloat())) {
                     resources.getDrawable(R.drawable.ic_next_arrow_fade, null).setTint(unSelectedMoveButtonColor)
-                    resources.getDrawable(R.drawable.unselected_rect,null).setTint(unSelectedMoveButtonColor)
+                    resources.getDrawable(R.drawable.unselected_rect, null).setTint(unSelectedMoveButtonColor)
                 } else {
-                    resources.getDrawable(R.drawable.unselected_rect,null).setTint(resources.getColor(R.color.fade_white,null))
+                    resources.getDrawable(R.drawable.unselected_rect, null).setTint(resources.getColor(R.color.fade_white, null))
                     imgBtnNext.setImageResource(R.drawable.selector_next_arrow)
                     imgBtnNext.setBackgroundResource(R.drawable.unselected_rect)
                 }
@@ -307,8 +310,6 @@ open class ShowcaseView : RelativeLayout {
             imgBtnNext.setImageResource(R.drawable.ic_next_arrow_fade)
             imgBtnNext.setBackgroundResource(R.drawable.unselected_rect)
         }
-
-
     }
 
     /**
@@ -317,8 +318,8 @@ open class ShowcaseView : RelativeLayout {
      * Add on click listener to previous button
      * Set the selection of previous next
      * */
-    private fun updatePreviousButton(isBtnPreviousSelected : Boolean,selectedMoveButtonColor:Int,
-                                     unSelectedMoveButtonColor:Int){
+    private fun updatePreviousButton(isBtnPreviousSelected: Boolean, selectedMoveButtonColor: Int,
+                                     unSelectedMoveButtonColor: Int) {
         //Initialize imgBtn previous
         val imgBtnPrevious = descriptionView.findViewById<ImageButton>(R.id.img_previous)
 
@@ -329,14 +330,14 @@ open class ShowcaseView : RelativeLayout {
 
 
         //set the selection of button previous
-        if(isBtnPreviousSelected){
+        if (isBtnPreviousSelected) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 if (ShowcaseUtils.isNotZero(selectedMoveButtonColor.toFloat())) {
                     resources.getDrawable(R.drawable.ic_previous_arrow, null).setTint(selectedMoveButtonColor)
-                    resources.getDrawable(R.drawable.rect_background,null).setTint(selectedMoveButtonColor)
+                    resources.getDrawable(R.drawable.rect_background, null).setTint(selectedMoveButtonColor)
 
                 } else {
-                    resources.getDrawable(R.drawable.rect_background,null).setTint(Color.WHITE)
+                    resources.getDrawable(R.drawable.rect_background, null).setTint(Color.WHITE)
                     imgBtnPrevious.setImageResource(R.drawable.selector_previous_arrow)
                     imgBtnPrevious.setBackgroundResource(R.drawable.rect_background)
 
@@ -345,13 +346,13 @@ open class ShowcaseView : RelativeLayout {
             imgBtnPrevious.setImageResource(R.drawable.ic_previous_arrow)
             imgBtnPrevious.setBackgroundResource(R.drawable.rect_background)
 
-        }else{
+        } else {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 if (ShowcaseUtils.isNotZero(unSelectedMoveButtonColor.toFloat())) {
                     resources.getDrawable(R.drawable.ic_previous_arrow_fade, null).setTint(unSelectedMoveButtonColor)
-                    resources.getDrawable(R.drawable.unselected_rect,null).setTint(unSelectedMoveButtonColor)
+                    resources.getDrawable(R.drawable.unselected_rect, null).setTint(unSelectedMoveButtonColor)
                 } else {
-                    resources.getDrawable(R.drawable.unselected_rect,null).setTint(resources.getColor(R.color.fade_white,null))
+                    resources.getDrawable(R.drawable.unselected_rect, null).setTint(resources.getColor(R.color.fade_white, null))
                     imgBtnPrevious.setImageResource(R.drawable.selector_previous_arrow)
                     imgBtnPrevious.setBackgroundResource(R.drawable.unselected_rect)
                 }
@@ -363,7 +364,6 @@ open class ShowcaseView : RelativeLayout {
         }
 
     }
-
 
     /**
      * To Initialize onCustomButtonClickListener
@@ -393,7 +393,6 @@ open class ShowcaseView : RelativeLayout {
         this.onPreviousClickListener = onClickListener
     }
 
-
     @RequiresApi(api = Build.VERSION_CODES.HONEYCOMB)
     override fun dispatchDraw(canvas: Canvas) {
         if (radiusFocusArea <= 0) {
@@ -403,7 +402,7 @@ open class ShowcaseView : RelativeLayout {
         if (cxFocusArea == 0f || cyFocusArea == 0f) {
             cxFocusArea = radiusFocusArea + ShowcaseUtils.convertDpToPx(marginInDp)
             cyFocusArea = (descriptionView.y + descriptionView.height.toFloat() + radiusFocusArea
-                    + ShowcaseUtils.convertDpToPx(marginInDp))
+                + ShowcaseUtils.convertDpToPx(marginInDp))
         }
 
         // background
@@ -426,7 +425,7 @@ open class ShowcaseView : RelativeLayout {
         shadowPaint.style = Paint.Style.FILL_AND_STROKE
         shadowPaint.shader = Shader()
         shadowPaint.shader = RadialGradient(cxFocusArea, cyFocusArea, radiusFocusArea,
-                colorFocusArea, if (gradientFocusEnabled) shadowPaint.color else colorFocusArea, Shader.TileMode.CLAMP)
+            colorFocusArea, if (gradientFocusEnabled) shadowPaint.color else colorFocusArea, Shader.TileMode.CLAMP)
         drawFocusArea(shadowPaint, canvas)
 
         // descriptionView relocate related to focusArea
