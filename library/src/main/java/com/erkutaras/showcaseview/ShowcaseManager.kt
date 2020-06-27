@@ -90,6 +90,12 @@ class ShowcaseManager private constructor(private val builder: Builder) {
         internal lateinit var descriptionTitle: String
         internal lateinit var descriptionText: String
         private lateinit var buttonText: String
+        private var buttonVisibility: Boolean = true
+        private var moveButtonsVisibility: Boolean = false
+        private var cancelButtonVisibility: Boolean = true
+        private var cancelButtonColor: Int =  0
+        private var selectedMoveButtonColor: Int =  0
+        private var unSelectedMoveButtonColor: Int =  0
         private var colorDescTitle: Int = 0
         private var colorDescText: Int = 0
         private var colorButtonText: Int = 0
@@ -138,6 +144,21 @@ class ShowcaseManager private constructor(private val builder: Builder) {
 
         fun buttonText(buttonText: String): Builder {
             this.buttonText = buttonText
+            return this
+        }
+
+        fun buttonVisibility(buttonVisibility: Boolean): Builder {
+            this.buttonVisibility = buttonVisibility
+            return this
+        }
+
+        fun moveButtonsVisibility(moveButtonsVisibility: Boolean): Builder {
+            this.moveButtonsVisibility = moveButtonsVisibility
+            return this
+        }
+
+        fun cancelButtonVisibility(cancelButtonVisibility: Boolean): Builder {
+            this.cancelButtonVisibility = cancelButtonVisibility
             return this
         }
 
@@ -202,6 +223,24 @@ class ShowcaseManager private constructor(private val builder: Builder) {
             return this
         }
 
+        @RequiresApi(Build.VERSION_CODES.M)
+        fun cancelButtonColor(color: Int): Builder {
+            this.cancelButtonColor = color
+            return this
+        }
+
+        @RequiresApi(Build.VERSION_CODES.M)
+        fun selectedMoveButtonColor(color: Int): Builder {
+            this.selectedMoveButtonColor = color
+            return this
+        }
+
+        @RequiresApi(Build.VERSION_CODES.M)
+        fun unSelectedMoveButtonColor(color: Int): Builder {
+            this.unSelectedMoveButtonColor = color
+            return this
+        }
+
         fun gradientFocusEnabled(enabled: Boolean): Builder {
             this.gradientFocusEnabled = enabled
             return this
@@ -228,23 +267,29 @@ class ShowcaseManager private constructor(private val builder: Builder) {
             val rect = calculateRect(marginFocusArea, viewPositionRect)
 
             return ShowcaseModel(
-                descriptionImageRes = descriptionImageRes,
-                descriptionTitle = descriptionTitle,
-                descriptionText = descriptionText,
-                buttonText = buttonText,
-                colorDescTitle = colorDescTitle,
-                colorDescText = colorDescText,
-                colorButtonText = colorButtonText,
-                colorButtonBackground = colorButtonBackground,
-                colorBackground = colorBackground,
-                alphaBackground = alphaBackground,
-                colorFocusArea = colorFocusArea,
-                cxFocusArea = circleCenterX,
-                cyFocusArea = circleCenterY,
-                radiusFocusArea = circleCenterRadius,
-                rect = rect,
-                type = type,
-                gradientFocusEnabled = gradientFocusEnabled
+                    descriptionImageRes = descriptionImageRes,
+                    descriptionTitle = descriptionTitle,
+                    descriptionText = descriptionText,
+                    buttonText = buttonText,
+                    buttonVisibility = buttonVisibility,
+                    moveButtonsVisibility = moveButtonsVisibility,
+                    cancelButtonVisibility = cancelButtonVisibility,
+                    cancelButtonColor = cancelButtonColor,
+                    selectedMoveButtonColor = selectedMoveButtonColor,
+                    unSelectedMoveButtonColor = unSelectedMoveButtonColor,
+                    colorDescTitle = colorDescTitle,
+                    colorDescText = colorDescText,
+                    colorButtonText = colorButtonText,
+                    colorButtonBackground = colorButtonBackground,
+                    colorBackground = colorBackground,
+                    alphaBackground = alphaBackground,
+                    colorFocusArea = colorFocusArea,
+                    cxFocusArea = circleCenterX,
+                    cyFocusArea = circleCenterY,
+                    radiusFocusArea = circleCenterRadius,
+                    rect = rect,
+                    type = type,
+                    gradientFocusEnabled = gradientFocusEnabled
             )
 
         }
@@ -270,18 +315,17 @@ class ShowcaseManager private constructor(private val builder: Builder) {
         private fun calculateRect(marginFocusArea: Int, viewPositionRect: Rect): Rect {
             val margin = ShowcaseUtils.convertDpToPx(marginFocusArea.toFloat())
             return Rect(
-                (viewPositionRect.left - margin).toInt(),
-                (viewPositionRect.top - margin).toInt(),
-                (viewPositionRect.right + margin).toInt(),
-                (viewPositionRect.bottom + margin).toInt()
+                    (viewPositionRect.left - margin).toInt(),
+                    (viewPositionRect.top - margin).toInt(),
+                    (viewPositionRect.right + margin).toInt(),
+                    (viewPositionRect.bottom + margin).toInt()
             )
         }
     }
 
     companion object {
 
-        @JvmField
-        val REQUEST_CODE_SHOWCASE = 7032
-        private val TAG = "ShowcaseManager"
+        const val REQUEST_CODE_SHOWCASE = 7032
+        private const val TAG = "ShowcaseManager"
     }
 }
