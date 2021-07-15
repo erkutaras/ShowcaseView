@@ -38,6 +38,7 @@ class ShowcaseModel(
     val radiusFocusArea: Float = 0.toFloat(),
     val rect: Rect? = null,
     val type: ShowcaseType = ShowcaseType.CIRCLE,
+    val view: View = null,
     val gradientFocusEnabled: Boolean = false
 ) : Parcelable {
     @IgnoredOnParcel
